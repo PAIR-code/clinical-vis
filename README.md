@@ -21,7 +21,7 @@ $ polymer serve
 Then navigate to:
 * `http://localhost:8081/components/clinical-vis/demo/index.html` for a demo of
   the clinical-vis visualization
-* `http://127.0.0.1:8081/components/clinical-vis/demo/table-index.html` for a
+* `http://localhost:8081/components/clinical-vis/demo/table-index.html` for a
   demo of the baseline clinical-table visualization
 
 ## Using the elements
