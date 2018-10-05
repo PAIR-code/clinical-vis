@@ -15,7 +15,9 @@ First, make sure you have the
 
 ## Viewing demos of the elements
 
+From this top-level clinical-vis directory:
 ```
+$ polymer install
 $ polymer serve
 ```
 Then navigate to:
