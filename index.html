@@ -11,9 +11,9 @@
 
     gtag('config', 'UA-46457317-11');
   </script>
-  <title>What-If Tool</title>
+  <title>ClinicalVis</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.orange-cyan.min.css">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-cyan.min.css">
   <link href='http://fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <link rel="icon" href="./assets/favicon.png" type="image/png"/>
@@ -289,7 +289,7 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout__title">What-If Tool</span>
+        <span class="mdl-layout__title">ClinicalVis</span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
@@ -300,7 +300,7 @@
           <a class="mdl-navigation__link" href="./index.html#demos">Demos</a>
           <a class="mdl-navigation__link" href="./index.html#about">About</a>
           <a class="mdl-navigation__link" href="./index.html#references">References</a>
-          <a class="mdl-navigation__link" href="./ai-fairness.html">AI Fairness</a>
+<!--           <a class="mdl-navigation__link" href="./ai-fairness.html">AI Fairness</a> -->
           <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://ai.google/research/teams/brain/pair" target="-_blank">
             <i class="material-icons icon-style">open_in_new</i>
             <span>PAIR</span>
@@ -313,7 +313,7 @@
       </div>
     </header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">What If Tool</span>
+      <span class="mdl-layout-title">ClinicalVis</span>
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="./index.html">Home</a>
         <a class="mdl-navigation__link" href="./index.html#intro">Introduction</a>
@@ -321,9 +321,9 @@
         <a class="mdl-navigation__link" href="./index.html#demos">Demos</a>
         <a class="mdl-navigation__link" href="./index.html#about">About</a>
         <a class="mdl-navigation__link" href="./index.html#references">References</a>
-        <a class="mdl-navigation__link" href="./ai-fairness.html">AI Fairness</a>
+<!--         <a class="mdl-navigation__link" href="./ai-fairness.html">AI Fairness</a> -->
         <hr>
-        <a class="mdl-navigation__link" href="http://ai.googleblog.com/2018/09/the-what-if-tool-code-free-probing-of.html" target="_blank">Read the blog post</a>
+<!--         <a class="mdl-navigation__link" href="http://ai.googleblog.com/2018/09/the-what-if-tool-code-free-probing-of.html" target="_blank">Read the blog post</a> -->
         <a class="mdl-navigation__link" href="https://ai.google/research/teams/brain/pair">About PAIR</a>
         <a class="mdl-navigation__link" href="https://github.com/tensorflow/tensorboard/tree/master/tensorboard/plugins/interactive_inference">Github</a>
         <a class="mdl-navigation__link" href="https://pair-code.github.io/facets/" target="-_blank">
@@ -341,8 +341,8 @@
       <div class="page-content hero">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone section-name big-title">
-            <div class="mdl-typography--display-4 what-if">What If...</div>
-            <div class="mdl-typography--display-1 tagline">you could inspect a machine learning model,<br> with no coding required?
+            <div class="mdl-typography--display-4 what-if">ClinicalVis</div>
+            <div class="mdl-typography--display-1 tagline">A visualization-based prototype system <br>to explore the interaction of healthcare providers and Electronic Health Records
             </div>
           </div>
         </div>
@@ -351,9 +351,8 @@
         <div class="page-content">
           <div class="intro mdl-grid" id="intro">
             <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone introduction-content ">
-              <div class="mdl-typography--headline">Building effective machine learning systems means asking a lot of questions. It&apos;s not enough to train a model and walk away. Instead, good practitioners act as detectives, probing to understand their model better.</div><br>
-              <div class="mdl-typography--body-1">But answering these kinds of questions isn&apos;t easy. Probing  &quot;what if&quot; scenarios often means writing custom, one-off code to analyze a specific model. Not only is this process inefficient, it makes it hard for non-programmers to participate in the process of shaping and improving machine learning models. For <a class="inline" href="https://ai.google/research/teams/brain/pair" target="_blank">us</a>, making it easier for a broad set of people to examine, evaluate, and debug machine learning systems is a key concern.</div><br>
-              <div class="mdl-typography--body-1"> That's why we built the What-If Tool. Built into the open-source TensorBoard web application - a standard part of the TensorFlow platform - the tool allows users to analyze an machine learning model without the need for writing any further code. Given pointers to a TensorFlow model and a dataset, the What-If Tool offers an interactive visual interface for exploring model results. </div>
+              <div class="mdl-typography--headline">Abstract</div><br>
+              <div class="mdl-typography--body-1">Making decisions about what clinical tasks to prepare for is multi-factored, and especially challenging in intensive care environments where resources must be balanced with patient needs. Electronic health records (EHRs) are a rich data source, but are task-agnostic and can be difficult to use as summarizations of patient needs for a specific task, such as ``could this patient need a ventilator tomorrow?'' In this paper, we introduce \textit{ClinicalVis}, an open-source EHR visualization-based prototype system for task-focused design evaluation of interactions between healthcare providers (HCPs) and EHRs. We situate ClinicalVis in a task-focused proof-of-concept design study targeting these interactions with real patient data. We conduct an empirical study of 14 HCPs, and discuss our findings on usability, accuracy, preference, and confidence in treatment decisions. We also present design implications that our findings suggest for future EHR interfaces, the presentation of clinical data for task-based planning, and evaluating task-focused HCP/EHR interactions in practice.</div>
             </div>
             <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--4-col-tablet mdl-cell--2-offset-tablet mdl-cell--4-col-phone tutorial-video ">
               <iframe width="560" height="315" src="https://www.youtube.com/embed/hpYl8WLYeKo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -362,17 +361,18 @@
 
           <div class="page-section features mdl-grid" id="features">
             <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
-              What can you do with the What-If Tool? 
+              About ClinicalVis 
             </div>
 
             <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-grid mdl-grid--nesting visualize-inference-feature">
                 <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet"></div>
                 <div class="feature-list-item__content mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
-                  <div class="feature-list-item__title mdl-typography--display-1">Visualize inference results
+                  <div class="feature-list-item__title mdl-typography--display-1">What is ClinicalVis?
                   </div>
                   <div class="feature-list-item__text mdl-typography--body-1">
-                    Examples are colored by inference results until changed. Organize results into confusion matrices and other custom layouts to show inference results faceted by numerous features.
+                    ClinicalVis is an open-source visualization-based proof of concept for EHRs. Designed as content-idependent but (data) structure-dependent, ClinicalVis enables rapid information assimliation and supports the inference of insights from large amounts of data, specifically for clinical preparedness. 
+                    <br><br>ClinicalVis was designed keeping in mind known and observed HCP workflows, and we use simple visualizations that can be easily read with little onboarding. It is is scalable to include a range of variables, and can be used more generally to investigate during- and post-task clinical usage of ICU EHRs. Try out our <a class="inline" id="#demo">demo</a>!
                   </div>
                 </div>
               </div>
@@ -382,10 +382,10 @@
               <div class="mdl-grid mdl-grid--nesting edit-example-feature">
                 <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet "></div>
                 <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
-                  <div class="feature-list-item__title mdl-typography--display-1">Edit a datapoint and see how your model performs
+                  <div class="feature-list-item__title mdl-typography--display-1">Why did we build it?
                   </div>
                   <div class="feature-list-item__text mdl-typography--body-1">
-                    Edit, add or remove features or feature values for any selected datapoint and then run inference to test model performance. Alternatively, you can duplicate or upload a whole new example to see where it stands vis-&#224;-vis loaded examples.
+                   There is a strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination [1] and  patient-level healtcare management. There are many commercial EHR visualizations that are promising, but duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce.<br><br>We built and evaluated ClinicalVis to add to the relatively small body of research on evaluating HCP interactions with EHR visualizations in a realistic task-focused scenario. 
                   </div>
                 </div>
               </div>
@@ -395,16 +395,29 @@
               <div class="mdl-grid mdl-grid--nesting pd-plot-feature">
                 <div class="feature-list-item__image mdl-cell mdl-cell--4-col  mdl-cell--4-col-tablet "></div>
                 <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
-                  <div class="feature-list-item__title mdl-typography--display-1">Explore the effects of a single feature
+                  <div class="feature-list-item__title mdl-typography--display-1">How did we evaluate ClinicalVis? 
                   </div>
                   <div class="feature-list-item__text mdl-typography--body-1">
-                    Explore auto-generated plots for individual features of a selected datapoint that show the change in inference results for different valid values of the feature.
+                    We conducted an empirical evaluation of HCP-EHR interaction with ClinicalVis and the baseline prototype in a mixed-methods, task-focused user study centered around clinical care planning a remote eICU scenario. The baseline prototype was designed to emulate commercially available EHR softwares, and participating HCPs engaged with EHRs sourced from the MIMIC-III database. <br><br> Read the paper as a <a class="inline">PDF</a> or as a detailed summary <a class="inline">online</a>. 
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+              <div class="mdl-grid mdl-grid--nesting pd-plot-feature">
+                <div class="feature-list-item__image mdl-cell mdl-cell--4-col  mdl-cell--4-col-tablet "></div>
+                <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
+                  <div class="feature-list-item__title mdl-typography--display-1">How can you use it>
+                  </div>
+                  <div class="feature-list-item__text mdl-typography--body-1">
+                    The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to best improve aspects of healthcare delivery.<br><br> To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply it in your own research. 
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!--             <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-grid mdl-grid--nesting counterfactual-feature">
                 <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet "></div>
                 <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
@@ -415,9 +428,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+<!--             <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-grid mdl-grid--nesting distance-feature-feature">
                 <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet "></div>
                 <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
@@ -428,9 +441,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+<!--             <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-grid mdl-grid--nesting performance-feature">
                 <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet "></div>
                 <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
@@ -441,9 +454,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+<!--             <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-grid mdl-grid--nesting fairness-feature">
                 <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet "></div>      
                 <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
@@ -456,13 +469,13 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
           </div>
-
+<!-- 
           <div class="demos mdl-grid mdl-grid--no-spacing page-section" id="demos">
             <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-typography--display-1 section-name demo-section-title">
-              Take the What-If Tool for a spin!
+              Demo ClinicalVis
             </div>
             <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone demo-card-cell">
               <div class="mdl-card demo-card-wide binary-classification-demo">
@@ -486,9 +499,9 @@
                   <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="uci.html" target="_blank"> Go to demo </a>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone demo-card-cell">
+<!--             <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone demo-card-cell">
               <div class="mdl-card demo-card-wide regression-demo">
                 <div class="mdl-card__title demo-card-title">
                   <h2 class="mdl-card__title-text demo-title demo-content">Age Prediction</h2>
@@ -510,9 +523,9 @@
                   <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="age.html" target="_blank"> Go to demo </a>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone demo-card-cell">
+<!--             <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone demo-card-cell">
               <div class="mdl-card demo-card-wide image-binary-classification-demo">
                 <div class="mdl-card__title demo-card-title">
                   <h2 class="mdl-card__title-text demo-title demo-content">Smile Detection</h2>
@@ -532,8 +545,8 @@
                 </div>
               </div>
             </div>
-
-            <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone demo-card-cell">
+ -->
+<!--             <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone demo-card-cell">
               <div class="mdl-card demo-card-wide multiclass-classification-demo">
                 <div class="mdl-card__title demo-card-title">
                   <h2 class="mdl-card__title-text demo-title demo-content">Iris Flower</h2>
@@ -552,16 +565,24 @@
                   <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="iris.html" target="_blank"> Go to demo </a>
                 </div>
               </div>
-            </div>
+            </div> -->
 
           </div>
           <div class="about mdl-grid page-section" id="about">
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mdl-typography--display-1 mdl-cell--2-col-tablet">About</div>
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mdl-typography--display-1 mdl-cell--2-col-tablet">Authors & Affiliations</div>
             <div class=" mdl-cell mdl-cell--1-offset mdl-cell--5-col mdl-typography--body-1 mdl-cell--6-col-tablet ">
+            	<br><span class="mdl-typography--headline">Authors & Affiliations </span><br>
+              Marzyeh Ghassemi - University of Toronto, Verily<br>
+              Mahima Pushkarna - Google AI<br>
+              James Wexler - Google AI<br>
+              Jesse Johnson - Sanofi Genzyme, Verily<br>
+              Paul Varghese - Verily<br>
+              <br>
               <br><span class="mdl-typography--headline">PAIR </span><br>
               The <a class="inline" href="https://www.google.ai/pair" target='_blank'>People + AI Research initiative (PAIR)</a> brings together researchers across <a class='inline' href='https://ai.google' target='_blank'>Google</a> to study and redesign the ways people interact with AI systems. We focus on the &quot;human side&quot; of AI: the relationship between users and technology, the new applications it enables, and how to make it broadly inclusive. Our goal isn't just to publish research; we're also releasing open source tools for researchers and other experts to use.
               <br><br><span class="mdl-typography--headline">Acknowledgements</span><br>
-              The What-If Tool was a collaborative effort. We would like to thank the Google teams that piloted the tool and provided valuable feedback and the TensorBoard team for all their help.
+              ClinicalVis was a collaborative effort between PAIR and Verily. We would like to thank all our colleagues and study participants that piloted the visualization and provided valuable feedback.
+	            <br><br><span class="mdl-typography--headline"><b>This is not an official Google product</b></span><br>
             </div>
           </div>
           <hr>
