@@ -140,6 +140,13 @@
     background-position: center;
     background-size: cover;
   }
+
+  .vis-explain > .feature-list-item__image {
+    background-image: url('./assets/CV-vis.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }  
   .edit-example-feature > .feature-list-item__image {
     background-image: url('./assets/WIT-illustration-2.png');
     background-position: center;
@@ -296,16 +303,14 @@
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           <a class="mdl-navigation__link" href="./index.html">Home</a>
           <a class="mdl-navigation__link" href="./index.html#intro">Introduction</a>
-          <a class="mdl-navigation__link" href="./index.html#features">Features</a>
-          <a class="mdl-navigation__link" href="./index.html#demos">Demos</a>
-          <a class="mdl-navigation__link" href="./index.html#about">About</a>
-          <a class="mdl-navigation__link" href="./index.html#references">References</a>
-<!--           <a class="mdl-navigation__link" href="./ai-fairness.html">AI Fairness</a> -->
+          <a class="mdl-navigation__link" href="./index.html#vis">The Visualization</a>
+          <a class="mdl-navigation__link" href="./index.html#study">The Study</a>
+          <a class="mdl-navigation__link" href="./index.html#about">People</a>
           <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://ai.google/research/teams/brain/pair" target="-_blank">
             <i class="material-icons icon-style">open_in_new</i>
             <span>PAIR</span>
           </a>
-          <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://github.com/tensorflow/tensorboard/tree/master/tensorboard/plugins/interactive_inference" target="-_blank">
+          <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://github.com/PAIR-code/clinical-vis" target="-_blank">
             <i class="material-icons icon-style">link</i>
             <span>Github</span>
           </a>
@@ -317,13 +322,10 @@
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="./index.html">Home</a>
         <a class="mdl-navigation__link" href="./index.html#intro">Introduction</a>
-        <a class="mdl-navigation__link" href="./index.html#features">Features</a>
-        <a class="mdl-navigation__link" href="./index.html#demos">Demos</a>
+        <a class="mdl-navigation__link" href="./index.html#vis">The Visualization</a>
+        <a class="mdl-navigation__link" href="./index.html#study">The Study</a>
         <a class="mdl-navigation__link" href="./index.html#about">About</a>
-        <a class="mdl-navigation__link" href="./index.html#references">References</a>
-<!--         <a class="mdl-navigation__link" href="./ai-fairness.html">AI Fairness</a> -->
         <hr>
-<!--         <a class="mdl-navigation__link" href="http://ai.googleblog.com/2018/09/the-what-if-tool-code-free-probing-of.html" target="_blank">Read the blog post</a> -->
         <a class="mdl-navigation__link" href="https://ai.google/research/teams/brain/pair">About PAIR</a>
         <a class="mdl-navigation__link" href="https://github.com/tensorflow/tensorboard/tree/master/tensorboard/plugins/interactive_inference">Github</a>
         <a class="mdl-navigation__link" href="https://pair-code.github.io/facets/" target="-_blank">
@@ -351,34 +353,53 @@
             <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone introduction-content ">
               <div class="mdl-typography--headline">ClinicalVis is an open-source proof of concept visualization for EHRs.</div>
               <div class="mdl-typography--body-1">Designed as content-idependent but (data) structure-dependent, ClinicalVis enables rapid information assimliation and supports the inference of insights from large amounts of data, specifically for clinical preparedness. 
-              <br><br>ClinicalVis was designed keeping in mind known and observed HCP workflows, and we use simple visualizations that can be easily read with little onboarding. It is is scalable to include a range of variables, and can be used more generally to investigate during- and post-task clinical usage of ICU EHRs. Try out our <a class="inline" id="#demo">demo!</a></div>
-            </div>
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--4-col-tablet mdl-cell--2-offset-tablet mdl-cell--4-col-phone tutorial-video ">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/hpYl8WLYeKo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-          </div>
-
-          <div class="page-section features mdl-grid" id="features">
-            <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
-              About the study 
-            </div>
-
-            <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-grid mdl-grid--nesting edit-example-feature">
-                <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet "></div>
-                <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
-                  <div class="feature-list-item__title mdl-typography--display-1">Creating a platform for more research
-                  </div>
-                  <div class="feature-list-item__text mdl-typography--body-1">
-                   We built, evaluated and open-sourced ClinicalVis to add to the relatively small body of research on evaluating HCP interactions with EHR visualizations in a realistic task-focused scenario.
-                    <br><br>
-                   We build on strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination and patient-level healtcare management. While there are many promising, commercial EHR visualizations, we found that duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce. So we set out to change that with ClinicalVis.
-                  </div>
-                </div>
+                <br><br>ClinicalVis was designed keeping in mind known and observed HCP workflows, and we use simple visualizations that can be easily read with little onboarding. It is is scalable to include a range of variables, and can be used more generally to investigate during- and post-task clinical usage of ICU EHRs. Try out our <a class="inline" id="#demo">demo!</a></div>
+              </div>
+              <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--4-col-tablet mdl-cell--2-offset-tablet mdl-cell--4-col-phone tutorial-video ">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/hpYl8WLYeKo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
 
-            <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <div class="page-section features mdl-grid" id="vis">
+              <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+                The Visualization 
+              </div>
+
+              <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="mdl-grid mdl-grid--nesting vis-explain">
+                  <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
+                    <div class="feature-list-item__title mdl-typography--display-1">We built, evaluated and open-sourced ClinicalVis to add to the relatively small body of research on evaluating HCP interactions with EHR visualizations in a realistic task-focused scenario.
+                    </div>
+                    <div class="feature-list-item__text mdl-typography--body-1">
+                     We build on strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination and patient-level healtcare management. While there are many promising, commercial EHR visualizations, we found that duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce. So we set out to change that with ClinicalVis.
+                   </div>
+                 </div>
+                 <div class="feature-list-item__image mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet "></div>
+               </div>
+             </div>
+          </div>
+
+            <div class="page-section features mdl-grid" id="study">
+              <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+                The Study 
+              </div>
+
+              <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="mdl-grid mdl-grid--nesting edit-example-feature">
+                  <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet "></div>
+                  <div class="feature-list-item__content mdl-cell mdl-cell--6-col  mdl-cell--4-col-tablet ">
+                    <div class="feature-list-item__title mdl-typography--display-1">Creating a platform for more research
+                    </div>
+                    <div class="feature-list-item__text mdl-typography--body-1">
+                     We built, evaluated and open-sourced ClinicalVis to add to the relatively small body of research on evaluating HCP interactions with EHR visualizations in a realistic task-focused scenario.
+                     <br><br>
+                     We build on strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination and patient-level healtcare management. While there are many promising, commercial EHR visualizations, we found that duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce. So we set out to change that with ClinicalVis.
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-grid mdl-grid--nesting visualize-inference-feature">
                 <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet"></div>
                 <div class="feature-list-item__content mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
@@ -407,29 +428,29 @@
             </div>
           </div>
 
-          </div>
-          <div class="about mdl-grid page-section" id="about">
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mdl-typography--display-1 mdl-cell--2-col-tablet">Authors & Affiliations</div>
-            <div class=" mdl-cell mdl-cell--1-offset mdl-cell--5-col mdl-typography--body-1 mdl-cell--6-col-tablet ">
-            	<br><span class="mdl-typography--headline">Authors & Affiliations </span><br>
-              Marzyeh Ghassemi - University of Toronto, Verily <a href="" class="inline" target=_blank>contact</a> <br>
-              Mahima Pushkarna - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
-              James Wexler - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
-              Jesse Johnson - Sanofi Genzyme, Verily<br>
-              Paul Varghese - Verily<br>
-              <br>
-              <br><span class="mdl-typography--headline">PAIR </span><br>
-              The <a class="inline" href="https://www.google.ai/pair" target='_blank'>People + AI Research initiative (PAIR)</a> brings together researchers across <a class='inline' href='https://ai.google' target='_blank'>Google</a> to study and redesign the ways people interact with AI systems. We focus on the &quot;human side&quot; of AI: the relationship between users and technology, the new applications it enables, and how to make it broadly inclusive. Our goal isn't just to publish research; we're also releasing open source tools for researchers and other experts to use.
-              <br><br><span class="mdl-typography--headline">Acknowledgements</span><br>
-              ClinicalVis was a collaborative effort between PAIR (Google) and Verily. We would like to thank all our colleagues and study participants that piloted the visualization and provided valuable feedback.
-	            <br><br><span class="mdl-typography--headline"><b>This is not an official Google product</b></span><br>
-            </div>
-          </div>
-          <hr>
-          <!-- references was here -->
         </div>
-      </div>
-    </main>
-  </div>
+        <div class="about mdl-grid page-section" id="about">
+          <div class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mdl-typography--display-1 mdl-cell--2-col-tablet">Authors & Affiliations</div>
+          <div class=" mdl-cell mdl-cell--1-offset mdl-cell--5-col mdl-typography--body-1 mdl-cell--6-col-tablet ">
+           <br><span class="mdl-typography--headline">Authors & Affiliations </span><br>
+           Marzyeh Ghassemi - University of Toronto, Verily <a href="" class="inline" target=_blank>contact</a> <br>
+           Mahima Pushkarna - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
+           James Wexler - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
+           Jesse Johnson - Sanofi Genzyme, Verily<br>
+           Paul Varghese - Verily<br>
+           <br>
+           <br><span class="mdl-typography--headline">PAIR </span><br>
+           The <a class="inline" href="https://www.google.ai/pair" target='_blank'>People + AI Research initiative (PAIR)</a> brings together researchers across <a class='inline' href='https://ai.google' target='_blank'>Google</a> to study and redesign the ways people interact with AI systems. We focus on the &quot;human side&quot; of AI: the relationship between users and technology, the new applications it enables, and how to make it broadly inclusive. Our goal isn't just to publish research; we're also releasing open source tools for researchers and other experts to use.
+           <br><br><span class="mdl-typography--headline">Acknowledgements</span><br>
+           ClinicalVis was a collaborative effort between PAIR (Google) and Verily. We would like to thank all our colleagues and study participants that piloted the visualization and provided valuable feedback.
+           <br><br><span class="mdl-typography--headline"><b>This is not an official Google product</b></span><br>
+         </div>
+       </div>
+       <hr>
+       <!-- references was here -->
+     </div>
+   </div>
+ </main>
+</div>
 </body>
 </html>
