@@ -23,15 +23,24 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  .section-name {
-    color: #202124;
-    margin: 36px auto;
-    padding: 36px auto;
+  /*nav drawer icons */
+  .icon-style {
+    margin: auto 4px;
+    font-size: 1.2em;
+  }
+  .button-style {
+    margin: auto 6px;
+  }
+  .button-style > .icon-style {
+    margin: auto 4px auto 8px;
+    font-size: 1.6em;
   }
 
+  /*hero image and maask workaround*/
   .hero {
     min-height: 12vw;
   }
+
   .hero-banner {
     background-image: linear-gradient(
       rgba(209, 249, 229, 0.7),
@@ -41,6 +50,10 @@
     background-size: contain;
     margin-bottom: 12px;
   }
+
+  .hero-title {
+    padding: 64px 0px;
+  }
   .mask {
     background: #ffffff;
     border-top: solid 1px #DADCE0;
@@ -49,10 +62,6 @@
     max-width: 1600px;
     margin: 0 auto;
     overflow-x: auto;
-  }
-
-  .big-title {
-    padding: 64px 0px;
   }
 
   /*Typography*/
@@ -77,15 +86,7 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  .citation {
-    vertical-align: super;
-    font-size: smaller;
-    text-decoration: underline;
-    color: #5F6368;
-    padding-left: 4px;
-    line-height: 24px;
-  }
-
+  /*inline links*/
   .inline {
     background: rgba(212, 244, 235, 0.67);
     color: #202124;
@@ -96,7 +97,13 @@
   .inline:hover {
     color: #3C4043;
     background: rgba(163, 210, 206, 0.67);
+  }
 
+  /* visual modules*/
+  .section-name {
+    color: #202124;
+    margin: 36px auto;
+    padding: 36px auto;
   }
 
   /*introduction*/
@@ -108,148 +115,29 @@
     padding: 24px;
   }
 
-  /*features*/
-  .feature-list-item__content {
-    padding: 12px;
-    color: #5F6368;
-  }
-
-  .feature-list-item__content > .mdl-typography--display-1 {
-    font-size: 24px;
-    color: #5F6368;
-    margin-bottom: 12px;
-  }
-
-  .feature-list-item__content > .mdl-typography--body-1 {
-    font-size: 16px;
-    color: #202124;
-    font-weight: 300;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  /*feature images container*/
-  .feature-list-item__image {
-    width: 320px;
-    height: 240px;
-    border: solid 1px #DADCE0;
-  }
-
-  /*individual feature images*/
-  .visualize-inference-feature > .feature-list-item__image {
-    background-image: url('./assets/WIT-illustration-1.png');
-    background-position: center;
-    background-size: cover;
-  }
-
-  .vis-explain > .feature-list-item__image {
-    background-image: url('./assets/CV-vis.jpg');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-  }  
-  .edit-example-feature > .feature-list-item__image {
-    background-image: url('./assets/WIT-illustration-2.png');
-    background-position: center;
-    background-size: cover;
-  }
-  .pd-plot-feature > .feature-list-item__image {
-    background-image: url('./assets/WIT-illustration-3.png');
-    background-position: center;
-    background-size: cover;
-  }
-  .counterfactual-feature > .feature-list-item__image {
-    background-image: url('./assets/WIT-illustration-4.png');
-    background-position: center;
-    background-size: cover;
-  }
-  .distance-feature-feature > .feature-list-item__image {
-    background-image: url('./assets/WIT-illustration-5.png');
-    background-position: center;
-    background-size: cover;
-  }
-  .performance-feature > .feature-list-item__image {
-    background-image: url('./assets/WIT-illustration-6.png');
-    background-position: center;
-    background-size: cover;
-  }
-  .fairness-feature > .feature-list-item__image {
-    background-image: url('./assets/WIT-illustration-7.png');
-    background-position: center;
-    background-size: cover;
-  }
-
-
-  /*demo cards*/
-  .page-section {
-    padding: 48px 0;
-  }
-  .demo-section-title {
-    margin-bottom: 24px;
-  }
-  .demo-card-wide.mdl-card {
-    width: 512px;
+  
+  /*study*/
+  .summary-card-slim.mdl-card {
+    width: 300px;
     border: solid 1px #DADCE0;
     margin: 16px;
   }
 
-  .demo-card-wide > .mdl-card__title {
+  .summary-card-slim > .mdl-card__title {
     height: 176px;
+    background: rgba(212, 244, 235, 0.67);
   }
 
-  .demo-card-wide > .mdl-typography--body-1 {
+  .summary-card-slim > .mdl-typography--body-1 {
     font-size:  16px;
     color: #202124;
     font-weight: 300;
     font-family: 'Roboto', sans-serif;
     line-height: 28px;
-
   }
 
-  .demo-title {
-    color: #000000;
-  }
 
-  .demo-description {
-    color: #3C4043;
-  }
-  /*demo card images*/
-
-  .binary-classification-demo > .mdl-card__title {
-    background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.57),
-      rgba(255, 255, 255, 0.57),
-      rgba(255, 255, 255, 0.77)
-      ),
-    url('./assets/over50k-bins.png');
-    background-position: center;
-    background-size: cover;
-    border-bottom: solid 1px #DADCE0;
-  }
-  .image-binary-classification-demo > .mdl-card__title {
-    background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.57),
-      rgba(255, 255, 255, 0.57),
-      rgba(255, 255, 255, 0.77)
-      ),
-    url('./assets/images-conf-matrix.png');
-    background-position: center;
-    background-size: cover;
-    border-bottom: solid 1px #DADCE0;
-  }
-  .regression-demo > .mdl-card__title {
-    background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.57),
-      rgba(255, 255, 255, 0.57),
-      rgba(255, 255, 255, 0.77)
-      ),
-    url('./assets/age-scatter.png');
-    background-position: center;
-    background-size: cover;
-    border-bottom: solid 1px #DADCE0;
-  }
+  /*parking lot*/
   .multiclass-classification-demo > .mdl-card__title {
     background-image: linear-gradient(
       rgba(255, 255, 255, 0),
@@ -263,43 +151,15 @@
     border-bottom: solid 1px #DADCE0;
   }
 
-
-  /*to organize */
-  .chip {
-    padding: 0 0 16px 16px;
-  }
-  .mdl-chip {
-    background: #ffffff;
-    border: solid 1px #DADCE0;
-    color: #80868B;
-  }
-  /*.mdl-grid {
-    margin-bottom: 120px;
-    }*/
-    .icon-style {
-      margin: auto 4px;
-      font-size: 1.2em;
-    }
-    .button-style {
-      margin: auto 6px;
-    }
-    .button-style > .icon-style {
-      margin: auto 4px auto 8px;
-      font-size: 1.6em;
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
-        <!-- Title -->
         <span class="mdl-layout__title">ClinicalVis</span>
-        <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           <a class="mdl-navigation__link" href="./index.html">Home</a>
           <a class="mdl-navigation__link" href="./index.html#intro">Introduction</a>
@@ -318,6 +178,7 @@
         </nav>
       </div>
     </header>
+    <!-- Drawer starts here -->
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">ClinicalVis</span>
       <nav class="mdl-navigation">
@@ -341,10 +202,12 @@
       </nav>
     </div>
 
+
+    <!-- Main page starts here -->
     <main class="mdl-layout__content hero-banner">
       <div class="page-content hero">
         <div class="mdl-grid">
-          <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone section-name big-title">
+          <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone hero-title">
             <div class="mdl-typography--display-4 what-if">ClinicalVis</div>
           </div>
         </div>
@@ -353,89 +216,134 @@
         <div class="page-content">
           <div class="intro mdl-grid" id="intro">
             <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone introduction-content ">
-              <div class="mdl-typography--display-1">An open-source proof of concept visualization for EHRs</div>
-              <div class="mdl-typography--body-1">ClinicalVis visualizes single-patient EHR data in an intuitive, easy-to-read format for rapid information assimilation in realistic, task-focused scenarios. It supports the inference of insights from multiple clinical signals for clinical preparedness. Clinicalvis and was built, evaluated and open-sourced to add to the body of research on evaluating HCP interactions with EHR visualizations. 
-                <br><br>Try out our <a class="inline" id="#demo">demo!</a></div>
+              <div class="mdl-typography--display-1">
+                An open-source proof of concept visualization for EHRs
               </div>
-              <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone tutorial-video ">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/hpYl8WLYeKo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-            </div>
-
-            <div class="page-section features mdl-grid" id="vis">
-              <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
-                The Visualization 
-              </div>
-
-              <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--4-col-tablet mdl-cell--2-offset-tablet mdl-cell--4-col-phone vis-figure"></div>
-
-              <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-content">
-                <div class="mdl-typography--headline">Simple, scalable and supportive</div>
-                <div class="feature-list-item__text mdl-typography--body-1">
-                       We build on strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination and patient-level healthcare management. While there are many promising, commercial EHR visualizations, we found that duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce. So we set out to change that with ClinicalVis.
-
-                       ClinicalVis was designed keeping in mind known and observed HCP workflows, and we use simple visualizations that can be easily read with little onboarding. It is scalable to include a range of variables, and can be used more generally to investigate during- and post-task clinical usage of ICU EHRs. 
-                     </div>
-                </div>
-              </div>
-                
-
-
-             <div class="page-section features mdl-grid" id="study">
-              <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
-                The Study 
-              </div>
-
-             <div class="feature-list-item mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-grid mdl-grid--nesting visualize-inference-feature">
-                <div class="feature-list-item__image mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet"></div>
-                <div class="feature-list-item__content mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
-                  <div class="feature-list-item__title mdl-typography--display-1">Evaluating HCP-EHR interactions
-                  </div>
-                  <div class="feature-list-item__text mdl-typography--body-1">
-                    We evaluated the interactions of 14 healthcare providers with electronic health records using ClinicalVis in a mixed-methods user study. Participants were asked to plan care in a remote eICU scenario for 16 patient cases sourced from the MIMIC-III database, using ClinicalVis and a baseline prototype, designed to emulate commercially available EHR softwares. We looked for qualitative behaviors and interaction patterns to assess workflow integration, and captured metrics such as accuracy, self-reported confidence, time to task and task load. <br><br> Read the pre-print paper as a <a class="inline">PDF</a>. 
-                  </div>
-                </div>
+              <div class="mdl-typography--body-1">
+                ClinicalVis visualizes single-patient EHR data in an intuitive, easy-to-read format for rapid information assimilation in realistic, task-focused scenarios. It supports the inference of insights from multiple clinical signals for clinical preparedness. Clinicalvis and was built, evaluated and open-sourced to add to the body of research on evaluating HCP interactions with EHR visualizations. 
+                <br>
+                <br>
+                Try out our <a class="inline" id="#demo">demo!</a>
               </div>
             </div>
-
-
+            <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone tutorial-video ">
+              <!-- Insert ClinicalVis video here -->
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/hpYl8WLYeKo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
           </div>
+
+          <div class="page-section features mdl-grid" id="vis">
+            <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+              The Visualization 
+            </div>
+
+            <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--4-col-tablet mdl-cell--2-offset-tablet mdl-cell--4-col-phone vis-figure">
+              <!-- Insert ClinicalVis figure here -->
+            </div>
+
+            <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-headline">
+              <div class="mdl-typography--headline">
+                Simple, scalable and supportive
+              </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-content">
+              <div class="feature-list-item__text mdl-typography--body-1">
+               We build on strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination and patient-level healthcare management. While there are many promising, commercial EHR visualizations, we found that duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce. So we set out to change that with ClinicalVis.
+             </div>
+           </div>
+
+           <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-content">
+            <div class="feature-list-item__text mdl-typography--body-1">
+             ClinicalVis was designed keeping in mind known and observed HCP workflows, and we use simple visualizations that can be easily read with little onboarding. It is scalable to include a range of variables, and can be used more generally to investigate during- and post-task clinical usage of ICU EHRs. 
+           </div>
+         </div>
+
+       </div>
+       <div class="page-section features mdl-grid" id="study">
+        <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+          The Study 
         </div>
-
-        <div class="page-section features mdl-grid" id="future">
-          <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
-            Future Work 
-          </div>
-          <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset mdl-cell--8-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone">
-            <div class="mdl-typography--body-1">
-              The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to best improve aspects of healthcare delivery.<br><br> To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply it in your own research. 
-            </div>
-          </div>
-        </div>
-
-        <div class="about mdl-grid page-section" id="about">
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--1-offset mdl-typography--display-1 mdl-cell--2-col-tablet">Authors & Affiliations</div>
-          <div class=" mdl-cell mdl-cell--1-offset mdl-cell--5-col mdl-typography--body-1 mdl-cell--6-col-tablet ">
-           <br><span class="mdl-typography--headline">Authors & Affiliations </span><br>
-           Marzyeh Ghassemi - University of Toronto, Verily <a href="" class="inline" target=_blank>contact</a> <br>
-           Mahima Pushkarna - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
-           James Wexler - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
-           Jesse Johnson - Sanofi Genzyme, Verily <br>
-           Paul Varghese - Verily<br>
-           <br>
-           <br><span class="mdl-typography--headline">PAIR </span><br>
-           The <a class="inline" href="https://www.google.ai/pair" target='_blank'>People + AI Research initiative (PAIR)</a> brings together researchers across <a class='inline' href='https://ai.google' target='_blank'>Google</a> to study and redesign the ways people interact with AI systems. We focus on the &quot;human side&quot; of AI: the relationship between users and technology, the new applications it enables, and how to make it broadly inclusive. Our goal isn't just to publish research; we're also releasing open source tools for researchers and other experts to use.
-           <br><br><span class="mdl-typography--headline">Acknowledgements</span><br>
-           ClinicalVis was a collaborative effort between PAIR (Google) and Verily. We would like to thank all our colleagues and study participants that piloted the visualization and provided valuable feedback.
-           <br><br><span class="mdl-typography--headline"><b>This is not an official Google product</b></span><br>
+        <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone study-content">
+          <div class="feature-list-item__text mdl-typography--body-1">
+           We evaluated the interactions of 14 healthcare providers with electronic health records using ClinicalVis in a mixed-methods user study. Participants were asked to plan care in a remote eICU scenario for 16 patient cases sourced from the MIMIC-III database, using ClinicalVis and a baseline prototype, designed to emulate commercially available EHR softwares. We looked for qualitative behaviors and interaction patterns to assess workflow integration, and captured metrics such as accuracy, self-reported confidence, time to task and task load. <br><br> Read the pre-print paper as a <a class="inline">PDF</a>. 
          </div>
        </div>
-       <hr>
-       <!-- references was here -->
+
+       <div class="summary-card-deck mdl-cell mdl-cell--10-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone">
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">EHR to task is generally... </h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-typography--body-1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Mauris sagittis pellentesque lacus eleifend lacinia...
+          </div>
+        </div>
+
+
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">EHR to task is generally... </h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-typography--body-1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Mauris sagittis pellentesque lacus eleifend lacinia...
+          </div>
+        </div>
+
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">EHR to task is generally... </h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-typography--body-1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Mauris sagittis pellentesque lacus eleifend lacinia...
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="page-section features mdl-grid" id="future">
+      <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+        Future Work 
+      </div>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset mdl-cell--8-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone">
+        <div class="mdl-typography--body-1">
+          The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to best improve aspects of healthcare delivery.<br><br> To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply it in your own research. 
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="about mdl-grid page-section" id="about">
+      <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+        About
+      </div>
+      <div class=" mdl-cell mdl-cell--1-offset mdl-cell--5-col mdl-typography--body-1 mdl-cell--6-col-tablet ">
+       <br><span class="mdl-typography--headline">Authors & Affiliations </span><br>
+       Marzyeh Ghassemi - University of Toronto, Verily <a href="" class="inline" target=_blank>contact</a> <br>
+       Mahima Pushkarna - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
+       James Wexler - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
+       Jesse Johnson - Sanofi Genzyme, Verily <br>
+       Paul Varghese - Verily<br>
+       <br>
+       <br><span class="mdl-typography--headline">PAIR </span><br>
+       The <a class="inline" href="https://www.google.ai/pair" target='_blank'>People + AI Research initiative (PAIR)</a> brings together researchers across <a class='inline' href='https://ai.google' target='_blank'>Google</a> to study and redesign the ways people interact with AI systems. We focus on the &quot;human side&quot; of AI: the relationship between users and technology, the new applications it enables, and how to make it broadly inclusive. Our goal isn't just to publish research; we're also releasing open source tools for researchers and other experts to use.
+       <br><br><span class="mdl-typography--headline">Acknowledgements</span><br>
+       ClinicalVis was a collaborative effort between PAIR (Google) and Verily. We would like to thank all our colleagues and study participants that piloted the visualization and provided valuable feedback.
+       <br><br><span class="mdl-typography--headline"><b>This is not an official Google product</b></span><br>
      </div>
    </div>
- </main>
+   <hr>
+   <!-- references was here -->
+ </div>
+</div>
+</main>
 </div>
 </body>
 </html>
