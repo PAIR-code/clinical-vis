@@ -102,8 +102,9 @@
   /* visual modules*/
   .section-name {
     color: #202124;
-    margin: 36px auto;
-    padding: 36px auto;
+    margin: 12px auto;
+    padding: 48px;
+    text-align: center;
   }
 
   /*introduction*/
@@ -121,6 +122,10 @@
   }
 
   /*study*/
+
+  .summary-card-deck {
+    margin-top: 24px;
+  }
 
   .summary-card-slim.mdl-card {
     border: solid 1px #DADCE0;
@@ -236,16 +241,12 @@
           </div>
 
 
-
-
-
-
           <div class="page-section features mdl-grid" id="vis">
-            <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
               The Visualization 
             </div>
 
-            <div class="mdl-card mdl-shadow--0dp mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-figure">
+            <div class="mdl-card mdl-shadow--0dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-figure">
               <figure class="mdl-card__media">
                 <img src="/assets/CV-vis.jpg" alt="" />
               </figure>
@@ -273,45 +274,44 @@
 
 
 
-
-
-
-
        <div class="page-section features mdl-grid" id="study">
-        <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
           The Study 
         </div>
-        <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone study-content">
-          <div class="feature-list-item__text mdl-typography--body-1">
+
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-cell--middle study-headline">
+          <div class="mdl-typography--headline">
+            How do healthcare practitioners engage with visual representations of real patient EHR data during task-focused care planning?<br><br>Do visual representations of EHRs influence clinical care planning?
+          </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone study-content">
+          <div class="mdl-typography--body-1">
            We evaluated the interactions of 14 healthcare providers with electronic health records using ClinicalVis in a mixed-methods user study. Participants were asked to plan care in a remote eICU scenario for 16 patient cases sourced from the MIMIC-III database, using ClinicalVis and a baseline prototype, designed to emulate commercially available EHR softwares. We looked for qualitative behaviors and interaction patterns to assess workflow integration, and captured metrics such as accuracy, self-reported confidence, time to task and task load. <br><br> Read the pre-print paper as a <a class="inline">PDF</a>. 
          </div>
        </div>
 
-       <!-- mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone -->
-
        <div class="summary-card-deck mdl-grid">
-        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--3-col mdl-cell--1-offset mdl-cell--2-col-tablet mdl-cell--1-offset-tablet mdl-cell--0-offset-phone mdl-cell--4-col-phone">
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
           <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">EHR to task is generally... </h2>
+            <h2 class="mdl-card__title-text">Overall EHR-to-task performance was generally poor </h2>
           </div>
           <div class="mdl-card__supporting-text mdl-typography--body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Mauris sagittis pellentesque lacus eleifend lacinia...
+            While task performance (characterized by increased accuracy and/or lower time-to-decisions) on ClinicalVis was slightly better than on the baseline, we found that overall performance was generally low. We find that EHRs are fundamentally limited for care planning, and the data concerns associated with them directly affect HCPs. 
           </div>
         </div>
 
 
-        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--3-col mdl-cell--1-offset-phone mdl-cell--2-col-tablet mdl-cell--4-col-phone ">
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone ">
           <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">EHR to task is generally... </h2>
+            <h2 class="mdl-card__title-text">Better visualizations improved HCP performance</h2>
           </div>
           <div class="mdl-card__supporting-text mdl-typography--body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Mauris sagittis pellentesque lacus eleifend lacinia...
+            Participants preferred ClinicalVis over the Baseline, reporting better TLX scores. ClinicalVis integrated well into clinician workflows, as they started to engage with the EHRs in a data-first way. Further, they believed that the content had been altered in ClinicalVis for better performance, when it had not. 
           </div>
         </div>
 
-        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--3-col mdl-cell--1-offset-phone mdl-cell--2-col-tablet mdl-cell--4-col-phone">
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
           <div class="mdl-card__title">
             <h2 class="mdl-card__title-text">EHR to task is generally... </h2>
           </div>
