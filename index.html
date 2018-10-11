@@ -36,7 +36,7 @@
     font-size: 1.6em;
   }
 
-  /*hero image and maask workaround*/
+  /*hero image and mask workaround*/
   .hero {
     min-height: 12vw;
   }
@@ -59,7 +59,7 @@
     border-top: solid 1px #DADCE0;
   }
   .page-content{
-    max-width: 1600px;
+    max-width: 1200px;
     margin: 0 auto;
     overflow-x: auto;
   }
@@ -109,7 +109,7 @@
 
   /*introduction*/
   .introduction-content {
-    margin: 24px auto;
+    padding: 24px;
   }
 
   .tutorial-video {
@@ -145,19 +145,16 @@
   }
 
 
-  /*parking lot*/
-  .multiclass-classification-demo > .mdl-card__title {
-    background-image: linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.57),
-      rgba(255, 255, 255, 0.57),
-      rgba(255, 255, 255, 0.77)
-      ),
-    url('./assets/iris-scatter.png');
-    background-position: center;
-    background-size: cover;
-    border-bottom: solid 1px #DADCE0;
+  /*Future work*/
+  .future-work {
+    max-width: 640px;
   }
+
+  /*people*/
+  #people {
+    margin-bottom: 48px;
+  }
+
 
 </style>
 </head>
@@ -173,8 +170,9 @@
           <a class="mdl-navigation__link" href="./index.html#intro">Introduction</a>
           <a class="mdl-navigation__link" href="./index.html#vis">The Visualization</a>
           <a class="mdl-navigation__link" href="./index.html#study">The Study</a>
+          <a class="mdl-navigation__link" href="./index.html#findings">Findings</a>
           <a class="mdl-navigation__link" href="./index.html#future">Future Work</a>
-          <a class="mdl-navigation__link" href="./index.html#about">People</a>
+          <a class="mdl-navigation__link" href="./index.html#people">People</a>
           <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://ai.google/research/teams/brain/pair" target="-_blank">
             <i class="material-icons icon-style">open_in_new</i>
             <span>PAIR</span>
@@ -194,8 +192,9 @@
         <a class="mdl-navigation__link" href="./index.html#intro">Introduction</a>
         <a class="mdl-navigation__link" href="./index.html#vis">The Visualization</a>
         <a class="mdl-navigation__link" href="./index.html#study">The Study</a>
+        <a class="mdl-navigation__link" href="./index.html#findings">Findings</a>
         <a class="mdl-navigation__link" href="./index.html#future">Future Work</a>
-        <a class="mdl-navigation__link" href="./index.html#about">About</a>
+        <a class="mdl-navigation__link" href="./index.html#people">People</a>
         <hr>
         <a class="mdl-navigation__link" href="https://ai.google/research/teams/brain/pair">About PAIR</a>
         <a class="mdl-navigation__link" href="https://github.com/tensorflow/tensorboard/tree/master/tensorboard/plugins/interactive_inference">Github</a>
@@ -223,7 +222,7 @@
       <div class="mask">
         <div class="page-content">
           <div class="intro mdl-grid" id="intro">
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone introduction-content ">
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--1-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone introduction-content ">
               <div class="mdl-typography--display-1">
                 An open-source proof of concept visualization for EHRs
               </div>
@@ -234,7 +233,7 @@
                 Try out our <a class="inline" id="#demo">demo!</a>
               </div>
             </div>
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--8-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone tutorial-video ">
+            <div class="mdl-cell mdl-cell--5-col  mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone tutorial-video ">
               <!-- Insert ClinicalVis video here -->
               <iframe width="560" height="315" src="https://www.youtube.com/embed/hpYl8WLYeKo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
@@ -291,8 +290,12 @@
          </div>
        </div>
 
-       <div class="summary-card-deck mdl-grid">
-        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
+       <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name" id="findings">
+        Findings 
+      </div>
+
+      <div class="summary-card-deck mdl-grid">
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--1-offset-tablet mdl-cell--6-col-tablet mdl-cell--4-col-phone">
           <div class="mdl-card__title">
             <h2 class="mdl-card__title-text">Overall EHR-to-task performance was generally poor </h2>
           </div>
@@ -302,7 +305,7 @@
         </div>
 
 
-        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone ">
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--1-offset-tablet mdl-cell--6-col-tablet mdl-cell--4-col-phone ">
           <div class="mdl-card__title">
             <h2 class="mdl-card__title-text">Better visualizations improved HCP performance</h2>
           </div>
@@ -311,13 +314,12 @@
           </div>
         </div>
 
-        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
+        <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--1-offset-tablet mdl-cell--6-col-tablet mdl-cell--4-col-phone">
           <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">EHR to task is generally... </h2>
+            <h2 class="mdl-card__title-text">Maximizing time for decision validation, not information findings</h2>
           </div>
           <div class="mdl-card__supporting-text mdl-typography--body-1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Mauris sagittis pellentesque lacus eleifend lacinia...
+            Healthcare providers spend time post-decision for validation in ClinicalVis, as opposed to time spent in locating information in the baseline. We also noted that validation practices supported pre-existing heuristic methods and increased caution in decisions.
           </div>
         </div>
       </div>
@@ -327,41 +329,47 @@
 
 
     <div class="page-section features mdl-grid" id="future">
-      <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
         Future Work 
       </div>
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset mdl-cell--8-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone">
-        <div class="mdl-typography--body-1">
-          The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to best improve aspects of healthcare delivery.<br><br> To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply it in your own research. 
-        </div>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone future-work mdl-typography--body-1">
+          The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to best improve aspects of healthcare delivery.<br><br>To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply it in your own research. 
       </div>
     </div>
 
-    <hr>
-
-    <div class="about mdl-grid page-section" id="about">
-      <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
-        About
+    <div class="about mdl-grid page-section" id="people">
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
+        People
       </div>
-      <div class=" mdl-cell mdl-cell--1-offset mdl-cell--5-col mdl-typography--body-1 mdl-cell--6-col-tablet ">
-       <br><span class="mdl-typography--headline">Authors & Affiliations </span><br>
+
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--2-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--headline people-heading">
+       Authors & Affiliations
+     </div>
+
+     <div class=" mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--body-1 ">
        Marzyeh Ghassemi - University of Toronto, Verily <a href="" class="inline" target=_blank>contact</a> <br>
        Mahima Pushkarna - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
        James Wexler - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
        Jesse Johnson - Sanofi Genzyme, Verily <br>
        Paul Varghese - Verily<br>
-       <br>
-       <br><span class="mdl-typography--headline">PAIR </span><br>
-       The <a class="inline" href="https://www.google.ai/pair" target='_blank'>People + AI Research initiative (PAIR)</a> brings together researchers across <a class='inline' href='https://ai.google' target='_blank'>Google</a> to study and redesign the ways people interact with AI systems. We focus on the &quot;human side&quot; of AI: the relationship between users and technology, the new applications it enables, and how to make it broadly inclusive. Our goal isn't just to publish research; we're also releasing open source tools for researchers and other experts to use.
-       <br><br><span class="mdl-typography--headline">Acknowledgements</span><br>
-       ClinicalVis was a collaborative effort between PAIR (Google) and Verily. We would like to thank all our colleagues and study participants that piloted the visualization and provided valuable feedback.
-       <br><br><span class="mdl-typography--headline"><b>This is not an official Google product</b></span><br>
+     </div>
+     <div class="mdl-cell mdl-cell--3-col mdl-cell--2-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--headline people-heading">
+       PAIR
+     </div>
+     <div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--body-1 ">
+       The <a class="inline" href="https://www.google.ai/pair" target='_blank'>People + AI Research initiative (PAIR)</a> brings together researchers across <a class='inline' href='https://ai.google' target='_blank'>Google</a> to study and redesign the ways people interact with AI systems. We focus on the &quot;human side&quot; of AI: the relationship between users and technology, the new applications it enables, and how to make it broadly inclusive. Our goal isn't just to publish research; we're also releasing open source tools for researchers and other experts to use.</div>
+       <div class="mdl-cell mdl-cell--3-col mdl-cell--2-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--headline people-heading">
+         Acknowledgements
+       </div>
+       <div class=" mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--body-1 ">      
+         ClinicalVis was a collaborative effort between PAIR (Google) and Verily. We would like to thank all our colleagues and study participants that piloted the visualization and provided valuable feedback.
+       </div>
+       <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--headline section-name">
+        <b>This is not an official Google product</b>
+       </div>
      </div>
    </div>
-   <hr>
-   <!-- references was here git rm WIT-illustration-1 -->
  </div>
-</div>
 </main>
 </div>
 </body>
