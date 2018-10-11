@@ -115,7 +115,11 @@
     padding: 24px;
   }
 
-  
+  /*visualization*/
+  .mdl-card__media > img {
+    max-width: 100%;
+  }
+
   /*study*/
 
   .summary-card-slim.mdl-card {
@@ -231,34 +235,48 @@
             </div>
           </div>
 
+
+
+
+
+
           <div class="page-section features mdl-grid" id="vis">
             <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
               The Visualization 
             </div>
 
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset mdl-cell--4-col-tablet mdl-cell--2-offset-tablet mdl-cell--4-col-phone vis-figure">
-              <!-- Insert ClinicalVis figure here -->
+            <div class="mdl-card mdl-shadow--0dp mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-figure">
+              <figure class="mdl-card__media">
+                <img src="/assets/CV-vis.jpg" alt="" />
+              </figure>
             </div>
 
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-headline">
+            <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-cell--middle vis-headline">
               <div class="mdl-typography--headline">
                 Simple, scalable and supportive
               </div>
             </div>
 
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-content">
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset-desktop mdl-cell--3-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-content">
               <div class="feature-list-item__text mdl-typography--body-1">
                We build on strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination and patient-level healthcare management. While there are many promising, commercial EHR visualizations, we found that duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce. So we set out to change that with ClinicalVis.
              </div>
            </div>
 
-           <div class="mdl-cell mdl-cell--5-col mdl-cell--2-offset mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-content">
+           <div class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--4-col-phone vis-content">
             <div class="feature-list-item__text mdl-typography--body-1">
              ClinicalVis was designed keeping in mind known and observed HCP workflows, and we use simple visualizations that can be easily read with little onboarding. It is scalable to include a range of variables, and can be used more generally to investigate during- and post-task clinical usage of ICU EHRs. 
            </div>
          </div>
 
        </div>
+
+
+
+
+
+
+
        <div class="page-section features mdl-grid" id="study">
         <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--display-1 section-name">
           The Study 
