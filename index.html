@@ -98,6 +98,25 @@
     color: #3C4043;
     background: rgba(163, 210, 206, 0.67);
   }
+  .inline-special {
+    background: rgba(212, 244, 235, 0.27);
+    color: #202124;
+    padding: 12px;
+    margin: 24px 12px;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1px solid rgb(212, 244, 235);
+  }
+
+  .inline-special:hover {
+    background: rgba(212, 244, 235, 0.67);
+    color: #202124;
+    padding: 12px;
+    margin: 24px 12px;
+    text-decoration: underline;
+    border-radius: 2px;
+    border: 1px solid rgb(212, 244, 235);
+  }
 
   /* visual modules*/
   .section-name {
@@ -150,6 +169,10 @@
     max-width: 640px;
   }
 
+  .link-out {
+    text-align: center;
+    margin: 24px;
+  }
   /*people*/
   #people {
     margin-bottom: 48px;
@@ -173,11 +196,11 @@
           <a class="mdl-navigation__link" href="./index.html#findings">Findings</a>
           <a class="mdl-navigation__link" href="./index.html#future">Future Work</a>
           <a class="mdl-navigation__link" href="./index.html#people">People</a>
-          <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://ai.google/research/teams/brain/pair" target="-_blank">
+          <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://ai.google/research/teams/brain/pair" target="_blank">
             <i class="material-icons icon-style">open_in_new</i>
             <span>PAIR</span>
           </a>
-          <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://github.com/PAIR-code/clinical-vis" target="-_blank">
+          <a class="mdl-navigation__link button-style mdl-typography--text-uppercase" href="https://github.com/PAIR-code/clinical-vis" target="_blank">
             <i class="material-icons icon-style">link</i>
             <span>Github</span>
           </a>
@@ -196,13 +219,13 @@
         <a class="mdl-navigation__link" href="./index.html#future">Future Work</a>
         <a class="mdl-navigation__link" href="./index.html#people">People</a>
         <hr>
-        <a class="mdl-navigation__link" href="https://ai.google/research/teams/brain/pair">About PAIR</a>
-        <a class="mdl-navigation__link" href="https://github.com/tensorflow/tensorboard/tree/master/tensorboard/plugins/interactive_inference">Github</a>
-        <a class="mdl-navigation__link" href="https://pair-code.github.io/facets/" target="-_blank">
+        <a class="mdl-navigation__link" href="https://ai.google/research/teams/brain/pair" target="_blank">About PAIR</a>
+        <a class="mdl-navigation__link" href="https://github.com/tensorflow/tensorboard/tree/master/tensorboard/plugins/interactive_inference" target="_blank">Github</a>
+        <a class="mdl-navigation__link" href="https://pair-code.github.io/facets/" target="_blank">
           <i class="material-icons icon-style">star</i>
           <span>Facets</span>
         </a>
-        <a class="mdl-navigation__link" href="https://js.tensorflow.org" target="-_blank">
+        <a class="mdl-navigation__link" href="https://js.tensorflow.org" target="_blank">
           <i class="material-icons icon-style">star</i>
           <span>TensorFlow.js</span>
         </a>
@@ -333,7 +356,11 @@
         Future Work 
       </div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone future-work mdl-typography--body-1">
-          The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to best improve aspects of healthcare delivery.<br><br>To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply it in your own research. 
+        The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to best improve aspects of healthcare delivery.<br><br>To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply it in your own research. 
+      </div>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone link-out">
+        <a class="inline-special" href="" target="_blank">Explore the demo</a>
+        <a class="inline-special" href="" target="_blank"">Read the paper</a>
       </div>
     </div>
 
@@ -366,10 +393,10 @@
        </div>
        <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--headline section-name">
         <b>This is not an official Google product</b>
-       </div>
-     </div>
-   </div>
- </div>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
 </div>
 </body>
