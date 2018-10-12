@@ -3,13 +3,13 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46457317-11"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46457317-12"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'UA-46457317-11');
+    gtag('config', 'UA-46457317-12');
   </script>
   <title>ClinicalVis</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -118,6 +118,11 @@
     border: 1px solid rgb(212, 244, 235);
   }
 
+  .inline-special.link-list {
+    margin: 24px 24px 24px 48px;
+    line-height: 5em;
+  }
+
   /* visual modules*/
   .section-name {
     color: #202124;
@@ -128,10 +133,6 @@
 
   /*introduction*/
   .introduction-content {
-    padding: 24px;
-  }
-
-  .tutorial-video {
     padding: 24px;
   }
 
@@ -171,7 +172,7 @@
 
   .link-out {
     text-align: center;
-    margin: 24px;
+    margin-top: 48px;
   }
   /*people*/
   #people {
@@ -238,7 +239,7 @@
       <div class="page-content hero">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--11-col mdl-cell--1-offset mdl-cell--7-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone hero-title">
-            <div class="mdl-typography--display-4 what-if">ClinicalVis</div>
+            <div class="mdl-typography--display-4">ClinicalVis</div>
           </div>
         </div>
       </div>
@@ -250,15 +251,16 @@
                 An open-source proof of concept visualization for EHRs
               </div>
               <div class="mdl-typography--body-1">
-                ClinicalVis visualizes single-patient EHR data in an intuitive, easy-to-read format for rapid information assimilation in realistic, task-focused scenarios. It supports the inference of insights from multiple clinical signals for clinical preparedness. Clinicalvis and was built, evaluated and open-sourced to add to the body of research on evaluating HCP interactions with EHR visualizations. 
+                ClinicalVis visualizes single-patient Electronic Health Record (EHR) data in an intuitive, easy-to-read format for rapid information assimilation in realistic, task-focused scenarios. It supports the inference of insights from multiple clinical signals for clinical preparedness. ClinicalVis was built, evaluated and open-sourced to add to the body of research on evaluating Healthcare Provider (HCP) interactions with EHR visualizations. 
                 <br>
-                <br>
-                Try out our <a class="inline" id="#demo">demo!</a>
               </div>
             </div>
-            <div class="mdl-cell mdl-cell--5-col  mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone tutorial-video ">
-              <!-- Insert ClinicalVis video here -->
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/hpYl8WLYeKo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div class="mdl-cell mdl-cell--5-col  mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone tutorial-video mdl-cell--middle">
+              <a href="" class="inline-special link-list" target="_blank">Read the paper</a> <br>
+              <a href="../demo.html" class="inline-special link-list" target="_blank">Try out the demo</a> <br>
+              <a href="https://github.com/PAIR-code/clinical-vis" class="inline-special link-list" target="_blank">Check out the Code</a> <br>
+              <a href="mailto:clinical-vis@google.com" class="inline-special link-list" target="_blank">Get in touch</a>
+              
             </div>
           </div>
 
@@ -282,7 +284,7 @@
 
             <div class="mdl-cell mdl-cell--4-col mdl-cell--2-offset-desktop mdl-cell--3-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone vis-content">
               <div class="feature-list-item__text mdl-typography--body-1">
-               We build on strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination and patient-level healthcare management. While there are many promising, commercial EHR visualizations, we found that duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce. So we set out to change that with ClinicalVis.
+               We built on strong body of prior work on designing visualization-based systems and prototypes that support teamwork in healthcare coordination and patient-level healthcare management. While there are many promising, commercial EHR visualizations, we found that duplicating the evaluations conducted on closed-source systems are difficult, and experiments on care planning in a task-oriented setting are hard to reproduce. So we set out to change that with ClinicalVis.
              </div>
            </div>
 
@@ -309,7 +311,7 @@
 
         <div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone study-content">
           <div class="mdl-typography--body-1">
-           We evaluated the interactions of 14 healthcare providers with electronic health records using ClinicalVis in a mixed-methods user study. Participants were asked to plan care in a remote eICU scenario for 16 patient cases sourced from the MIMIC-III database, using ClinicalVis and a baseline prototype, designed to emulate commercially available EHR softwares. We looked for qualitative behaviors and interaction patterns to assess workflow integration, and captured metrics such as accuracy, self-reported confidence, time to task and task load. <br><br> Read the pre-print paper as a <a class="inline">PDF</a>. 
+           We evaluated the interactions of 14 healthcare providers with electronic health records using ClinicalVis in a mixed-methods user study. Participants were asked to plan care in a remote eICU scenario for 16 patient cases sourced from the <a href="https://mimic.physionet.org/" class="inline" target="_blank">MIMIC-III</a> database, using ClinicalVis and a baseline prototype, designed to emulate commercially available EHR softwares. We looked for qualitative behaviors and interaction patterns to assess workflow integration, and captured metrics such as accuracy, self-reported confidence, time to task and task load.
          </div>
        </div>
 
@@ -333,16 +335,16 @@
             <h2 class="mdl-card__title-text">Better visualizations improved HCP performance</h2>
           </div>
           <div class="mdl-card__supporting-text mdl-typography--body-1">
-            Participants preferred ClinicalVis over the Baseline, reporting better TLX scores. ClinicalVis integrated well into clinician workflows, as they started to engage with the EHRs in a data-first way. Further, they believed that the content had been altered in ClinicalVis for better performance, when it had not. 
+            Participants preferred ClinicalVis over the baseline, reporting better <a href="https://en.wikipedia.org/wiki/NASA-TLX" class="inline" target="_blank">TLX scores</a>. ClinicalVis integrated well into clinician workflows, as they started to engage with the EHRs in a data-first way. Further, they believed that the content had been altered in ClinicalVis for better performance, when it had not. 
           </div>
         </div>
 
         <div class="summary-card-slim mdl-card mdl-shadow--0dp mdl-cell mdl-cell--4-col mdl-cell--1-offset-tablet mdl-cell--6-col-tablet mdl-cell--4-col-phone">
           <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">Maximizing time for decision validation, not information findings</h2>
+            <h2 class="mdl-card__title-text">Maximizing time for decision validation, not information finding</h2>
           </div>
           <div class="mdl-card__supporting-text mdl-typography--body-1">
-            Healthcare providers spend time post-decision for validation in ClinicalVis, as opposed to time spent in locating information in the baseline. We also noted that validation practices supported pre-existing heuristic methods and increased caution in decisions.
+            Healthcare providers spend time post-decision for validation in ClinicalVis, as opposed to time spent locating information in the baseline. We also noted that validation practices supported pre-existing heuristic methods and increased caution in decisions.
           </div>
         </div>
       </div>
@@ -356,10 +358,13 @@
         Future Work 
       </div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone future-work mdl-typography--body-1">
-        The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to best improve aspects of healthcare delivery.<br><br>To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply it in your own research. 
+        The design implications of our work suggest that modeling clinical data for decision support should include elements to guide clinical use. We believe that ClinicalVis can open up avenues for the rigorous evaluation of interactions between clinicians and patient data to improve aspects of healthcare delivery.<br><br>To that end, we have open-sourced ClinicalVis and are publishing our findings, hoping that you can take our visualization and apply or extend it in your own research. 
+      </div>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--caption-color-contrast">
+        This demo is optimized from Chrome OS. Pelase allow a few seconds to load.
       </div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone link-out">
-        <a class="inline-special" href="" target="_blank">Explore the demo</a>
+        <a class="inline-special" href="../demo.html" target="_blank">Explore the demo</a>
         <a class="inline-special" href="" target="_blank"">Read the paper</a>
       </div>
     </div>
@@ -374,9 +379,9 @@
      </div>
 
      <div class=" mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone mdl-typography--body-1 ">
-       Marzyeh Ghassemi - University of Toronto, Verily <a href="" class="inline" target=_blank>contact</a> <br>
-       Mahima Pushkarna - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
-       James Wexler - PAIR, Google AI, Cambridge <a href="" class="inline" target=_blank>contact</a><br>
+       Marzyeh Ghassemi - University of Toronto, Verily <br>
+       Mahima Pushkarna - PAIR, Google AI, Cambridge<br>
+       James Wexler - PAIR, Google AI, Cambridge<br>
        Jesse Johnson - Sanofi Genzyme, Verily <br>
        Paul Varghese - Verily<br>
      </div>
