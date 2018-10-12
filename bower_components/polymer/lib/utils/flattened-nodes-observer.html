@@ -6,24 +6,21 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="../utils/boot.html">
+--><link rel="import" href="../utils/boot.html">
 <link rel="import" href="../utils/array-splice.html">
 <link rel="import" href="../utils/async.html">
-<script>
-(function() {
+<script>(function () {
   'use strict';
-
   /**
    * Returns true if `node` is a slot element
    * @param {Node} node Node to test.
    * @return {boolean} Returns true if the given `node` is a slot
    * @private
    */
-  function isSlot(node) {
-    return (node.localName === 'slot');
-  }
 
+  function isSlot(node) {
+    return node.localName === 'slot';
+  }
   /**
    * Class that listens for changes (additions or removals) to
    * "flattened nodes" on a given `node`. The list of flattened nodes consists
@@ -66,8 +63,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @summary Class that listens for changes (additions or removals) to
    * "flattened nodes" on a given `node`.
    */
-  class FlattenedNodesObserver {
 
+
+  class FlattenedNodesObserver {
     /**
      * Returns the list of flattened nodes for the given `node`.
      * This list consists of a node's children and, for any children
@@ -82,25 +80,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     */
     static getFlattenedNodes(node) {
       if (isSlot(node)) {
-        node = /** @type {HTMLSlotElement} */(node); // eslint-disable-line no-self-assign
-        return node.assignedNodes({flatten: true});
+        node =
+        /** @type {HTMLSlotElement} */
+        node; // eslint-disable-line no-self-assign
+
+        return node.assignedNodes({
+          flatten: true
+        });
       } else {
-        return Array.from(node.childNodes).map((node) => {
+        return Array.from(node.childNodes).map(node => {
           if (isSlot(node)) {
-            node = /** @type {HTMLSlotElement} */(node); // eslint-disable-line no-self-assign
-            return node.assignedNodes({flatten: true});
+            node =
+            /** @type {HTMLSlotElement} */
+            node; // eslint-disable-line no-self-assign
+
+            return node.assignedNodes({
+              flatten: true
+            });
           } else {
             return [node];
           }
         }).reduce((a, b) => a.concat(b), []);
       }
     }
-
     /**
      * @param {Element} target Node on which to listen for changes.
      * @param {?function(!Element, { target: !Element, addedNodes: !Array<!Element>, removedNodes: !Array<!Element> }):void} callback Function called when there are additions
      * or removals from the target's list of flattened nodes.
     */
+
+
     constructor(target, callback) {
       /**
        * @type {MutationObserver}
@@ -111,12 +120,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        * @type {MutationObserver}
        * @private
        */
+
       this._nativeChildrenObserver = null;
       this._connected = false;
       /**
        * @type {Element}
        * @private
        */
+
       this._target = target;
       this.callback = callback;
       this._effectiveNodes = [];
@@ -126,13 +137,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        * @type {function()}
        * @private
        */
+
       this._boundSchedule = () => {
         this._schedule();
       };
+
       this.connect();
+
       this._schedule();
     }
-
     /**
      * Activates an observer. This method is automatically called when
      * a `FlattenedNodesObserver` is created. It should only be called to
@@ -140,27 +153,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      *
      * @return {void}
      */
+
+
     connect() {
       if (isSlot(this._target)) {
         this._listenSlots([this._target]);
       } else if (this._target.children) {
         this._listenSlots(this._target.children);
+
         if (window.ShadyDOM) {
-          this._shadyChildrenObserver =
-            ShadyDOM.observeChildren(this._target, (mutations) => {
-              this._processMutations(mutations);
-            });
+          this._shadyChildrenObserver = ShadyDOM.observeChildren(this._target, mutations => {
+            this._processMutations(mutations);
+          });
         } else {
-          this._nativeChildrenObserver =
-            new MutationObserver((mutations) => {
-              this._processMutations(mutations);
-            });
-          this._nativeChildrenObserver.observe(this._target, {childList: true});
+          this._nativeChildrenObserver = new MutationObserver(mutations => {
+            this._processMutations(mutations);
+          });
+
+          this._nativeChildrenObserver.observe(this._target, {
+            childList: true
+          });
         }
       }
+
       this._connected = true;
     }
-
     /**
      * Deactivates the flattened nodes observer. After calling this method
      * the observer callback will not be called when changes to flattened nodes
@@ -169,62 +186,72 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      *
      * @return {void}
      */
+
+
     disconnect() {
       if (isSlot(this._target)) {
         this._unlistenSlots([this._target]);
       } else if (this._target.children) {
         this._unlistenSlots(this._target.children);
+
         if (window.ShadyDOM && this._shadyChildrenObserver) {
           ShadyDOM.unobserveChildren(this._shadyChildrenObserver);
           this._shadyChildrenObserver = null;
         } else if (this._nativeChildrenObserver) {
           this._nativeChildrenObserver.disconnect();
+
           this._nativeChildrenObserver = null;
         }
       }
+
       this._connected = false;
     }
-
     /**
      * @return {void}
      * @private
      */
+
+
     _schedule() {
       if (!this._scheduled) {
         this._scheduled = true;
         Polymer.Async.microTask.run(() => this.flush());
       }
     }
-
     /**
      * @param {Array<MutationRecord>} mutations Mutations signaled by the mutation observer
      * @return {void}
      * @private
      */
+
+
     _processMutations(mutations) {
       this._processSlotMutations(mutations);
+
       this.flush();
     }
-
     /**
      * @param {Array<MutationRecord>} mutations Mutations signaled by the mutation observer
      * @return {void}
      * @private
      */
+
+
     _processSlotMutations(mutations) {
       if (mutations) {
-        for (let i=0; i < mutations.length; i++) {
+        for (let i = 0; i < mutations.length; i++) {
           let mutation = mutations[i];
+
           if (mutation.addedNodes) {
             this._listenSlots(mutation.addedNodes);
           }
+
           if (mutation.removedNodes) {
             this._unlistenSlots(mutation.removedNodes);
           }
         }
       }
     }
-
     /**
      * Flushes the observer causing any pending changes to be immediately
      * delivered the observer callback. By default these changes are delivered
@@ -233,18 +260,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @return {boolean} Returns true if any pending changes caused the observer
      * callback to run.
      */
+
+
     flush() {
       if (!this._connected) {
         return false;
       }
+
       if (window.ShadyDOM) {
         ShadyDOM.flush();
       }
+
       if (this._nativeChildrenObserver) {
         this._processSlotMutations(this._nativeChildrenObserver.takeRecords());
       } else if (this._shadyChildrenObserver) {
         this._processSlotMutations(this._shadyChildrenObserver.takeRecords());
       }
+
       this._scheduled = false;
       let info = {
         target: this._target,
@@ -252,52 +284,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         removedNodes: []
       };
       let newNodes = this.constructor.getFlattenedNodes(this._target);
-      let splices = Polymer.ArraySplice.calculateSplices(newNodes,
-        this._effectiveNodes);
-      // process removals
-      for (let i=0, s; (i<splices.length) && (s=splices[i]); i++) {
-        for (let j=0, n; (j < s.removed.length) && (n=s.removed[j]); j++) {
+      let splices = Polymer.ArraySplice.calculateSplices(newNodes, this._effectiveNodes); // process removals
+
+      for (let i = 0, s; i < splices.length && (s = splices[i]); i++) {
+        for (let j = 0, n; j < s.removed.length && (n = s.removed[j]); j++) {
           info.removedNodes.push(n);
         }
-      }
-      // process adds
-      for (let i=0, s; (i<splices.length) && (s=splices[i]); i++) {
-        for (let j=s.index; j < s.index + s.addedCount; j++) {
+      } // process adds
+
+
+      for (let i = 0, s; i < splices.length && (s = splices[i]); i++) {
+        for (let j = s.index; j < s.index + s.addedCount; j++) {
           info.addedNodes.push(newNodes[j]);
         }
-      }
-      // update cache
+      } // update cache
+
+
       this._effectiveNodes = newNodes;
       let didFlush = false;
+
       if (info.addedNodes.length || info.removedNodes.length) {
         didFlush = true;
         this.callback.call(this._target, info);
       }
+
       return didFlush;
     }
-
     /**
      * @param {!Array<Element|Node>|!NodeList<Node>} nodeList Nodes that could change
      * @return {void}
      * @private
      */
+
+
     _listenSlots(nodeList) {
-      for (let i=0; i < nodeList.length; i++) {
+      for (let i = 0; i < nodeList.length; i++) {
         let n = nodeList[i];
+
         if (isSlot(n)) {
           n.addEventListener('slotchange', this._boundSchedule);
         }
       }
     }
-
     /**
      * @param {!Array<Element|Node>|!NodeList<Node>} nodeList Nodes that could change
      * @return {void}
      * @private
      */
+
+
     _unlistenSlots(nodeList) {
-      for (let i=0; i < nodeList.length; i++) {
+      for (let i = 0; i < nodeList.length; i++) {
         let n = nodeList[i];
+
         if (isSlot(n)) {
           n.removeEventListener('slotchange', this._boundSchedule);
         }
@@ -307,6 +346,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
   Polymer.FlattenedNodesObserver = FlattenedNodesObserver;
-
-})();
-</script>
+})();</script>

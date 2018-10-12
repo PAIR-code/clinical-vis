@@ -6,9 +6,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../polymer/polymer.html">
+--><link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../marked-element/marked-element.html">
 <link rel="import" href="../prism-element/prism-highlighter.html">
 <link rel="import" href="../prism-element/prism-theme-default.html">
@@ -119,91 +117,77 @@ Custom property | Description | Default
     </div>
   </template>
 
-  <script>
-    'use strict';
+  <script>'use strict';
 
-    Polymer({
-      is: 'demo-snippet',
+Polymer({
+  is: 'demo-snippet',
+  properties: {
+    _markdown: {
+      type: String
+    }
+  },
+  attached: function () {
+    this._observer = Polymer.dom(this.$.content).observeNodes(function (info) {
+      this._updateMarkdown();
+    }.bind(this));
+  },
+  detached: function () {
+    if (this._observer) {
+      Polymer.dom(this.$.content).unobserveNodes(this._observer);
+      this._observer = null;
+    }
+  },
+  _updateMarkdown: function () {
+    var template = Polymer.dom(this).queryDistributedElements('template')[0]; // If there's no template, render empty code.
 
-      properties: {
-        _markdown: {
-          type: String,
-        },
-      },
+    if (!template) {
+      this._markdown = '';
+      return;
+    }
 
-      attached: function() {
-        this._observer = Polymer.dom(this.$.content).observeNodes(function(info) {
-          this._updateMarkdown();
-        }.bind(this));
-      },
+    var snippet = this.$.marked.unindent(template.innerHTML); // Hack: In safari + shady dom, sometime we get an empty 'class' attribute.
+    // if we do, delete it.
 
-      detached: function() {
-        if (this._observer) {
-          Polymer.dom(this.$.content).unobserveNodes(this._observer);
-          this._observer = null;
-        }
-      },
+    snippet = snippet.replace(/ class=""/g, ''); // Boolean properties are displayed as checked="", so remove the ="" bit.
 
-      _updateMarkdown: function() {
-        var template = Polymer.dom(this).queryDistributedElements('template')[0];
+    snippet = snippet.replace(/=""/g, '');
+    this._markdown = '```\n' + snippet + '\n' + '```'; // Stamp the template.
 
-        // If there's no template, render empty code.
-        if (!template) {
-          this._markdown = '';
-          return;
-        }
+    if (!template.hasAttribute('is')) {
+      // Don't need to listen for more changes (since stamping the template
+      // will trigger an observeNodes)
+      Polymer.dom(this.$.content).unobserveNodes(this._observer);
+      this._observer = null;
+      Polymer.dom(this).appendChild(document.importNode(template.content, true));
+    }
+  },
+  _copyToClipboard: function () {
+    // From
+    // https://github.com/google/material-design-lite/blob/master/docs/_assets/snippets.js
+    var snipRange = document.createRange();
+    snipRange.selectNodeContents(this.$.code);
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(snipRange);
+    var result = false;
 
-        var snippet = this.$.marked.unindent(template.innerHTML);
+    try {
+      result = document.execCommand('copy');
+      this.$.copyButton.textContent = 'done';
+    } catch (err) {
+      // Copy command is not available
+      console.error(err);
+      this.$.copyButton.textContent = 'error';
+    } // Return to the copy button after a second.
 
-        // Hack: In safari + shady dom, sometime we get an empty 'class' attribute.
-        // if we do, delete it.
-        snippet = snippet.replace(/ class=""/g, '');
 
-        // Boolean properties are displayed as checked="", so remove the ="" bit.
-        snippet = snippet.replace(/=""/g, '');
-
-        this._markdown = '```\n' + snippet + '\n' +
-            '```';
-        // Stamp the template.
-        if (!template.hasAttribute('is')) {
-          // Don't need to listen for more changes (since stamping the template
-          // will trigger an observeNodes)
-          Polymer.dom(this.$.content).unobserveNodes(this._observer);
-          this._observer = null;
-          Polymer.dom(this).appendChild(
-              document.importNode(template.content, true));
-        }
-      },
-
-      _copyToClipboard: function() {
-        // From
-        // https://github.com/google/material-design-lite/blob/master/docs/_assets/snippets.js
-        var snipRange = document.createRange();
-        snipRange.selectNodeContents(this.$.code);
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(snipRange);
-        var result = false;
-        try {
-          result = document.execCommand('copy');
-          this.$.copyButton.textContent = 'done';
-        } catch (err) {
-          // Copy command is not available
-          console.error(err);
-          this.$.copyButton.textContent = 'error';
-        }
-
-        // Return to the copy button after a second.
-        setTimeout(this._resetCopyButtonState.bind(this), 1000);
-
-        selection.removeAllRanges();
-        return result;
-      },
-
-      _resetCopyButtonState: function() {
-        this.$.copyButton.textContent = 'copy';
-      },
-    });
-  </script>
+    setTimeout(this._resetCopyButtonState.bind(this), 1000);
+    selection.removeAllRanges();
+    return result;
+  },
+  _resetCopyButtonState: function () {
+    this.$.copyButton.textContent = 'copy';
+  }
+});</script>
 
 </dom-module>

@@ -6,21 +6,17 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="../utils/boot.html">
+--><link rel="import" href="../utils/boot.html">
 <link rel="import" href="../utils/mixin.html">
 <link rel="import" href="../utils/gestures.html">
 
-<script>
-(function() {
-
+<script>(function () {
   'use strict';
-
   /**
    * @const {Polymer.Gestures}
    */
-  const gestures = Polymer.Gestures;
 
+  const gestures = Polymer.Gestures;
   /**
    * Element class mixin that provides API for adding Polymer's cross-platform
    * gesture events to nodes.
@@ -36,15 +32,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @summary Element class mixin that provides API for adding Polymer's cross-platform
    * gesture events to nodes
    */
-  Polymer.GestureEventListeners = Polymer.dedupingMixin(superClass => {
 
+  Polymer.GestureEventListeners = Polymer.dedupingMixin(superClass => {
     /**
      * @polymer
      * @mixinClass
      * @implements {Polymer_GestureEventListeners}
      */
     class GestureEventListeners extends superClass {
-
       /**
        * Add the event listener to the node if it is a gestures event.
        *
@@ -58,7 +53,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           super._addEventListenerToNode(node, eventName, handler);
         }
       }
-
       /**
        * Remove the event listener to the node if it is a gestures event.
        *
@@ -67,6 +61,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        * @param {function(!Event):void} handler Listener function to remove
        * @return {void}
        */
+
+
       _removeEventListenerFromNode(node, eventName, handler) {
         if (!gestures.removeListener(node, eventName, handler)) {
           super._removeEventListenerFromNode(node, eventName, handler);
@@ -76,8 +72,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     return GestureEventListeners;
-
   });
-
-})();
-</script>
+})();</script>

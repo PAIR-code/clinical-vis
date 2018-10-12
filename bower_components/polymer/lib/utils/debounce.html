@@ -6,19 +6,17 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="boot.html">
+--><link rel="import" href="boot.html">
 <link rel="import" href="mixin.html">
 <link rel="import" href="async.html">
 
-<script>
-(function() {
+<script>(function () {
   'use strict';
-
   /**
    * @summary Collapse multiple callbacks into one invocation after a timer.
    * @memberof Polymer
    */
+
   class Debouncer {
     constructor() {
       this._asyncModule = null;
@@ -34,11 +32,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {function()} callback Callback to run.
      * @return {void}
      */
+
+
     setConfig(asyncModule, callback) {
       this._asyncModule = asyncModule;
       this._callback = callback;
       this._timer = this._asyncModule.run(() => {
         this._timer = null;
+
         this._callback();
       });
     }
@@ -47,9 +48,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      *
      * @return {void}
      */
+
+
     cancel() {
       if (this.isActive()) {
         this._asyncModule.cancel(this._timer);
+
         this._timer = null;
       }
     }
@@ -58,9 +62,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      *
      * @return {void}
      */
+
+
     flush() {
       if (this.isActive()) {
         this.cancel();
+
         this._callback();
       }
     }
@@ -69,6 +76,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      *
      * @return {boolean} True if active.
      */
+
+
     isActive() {
       return this._timer != null;
     }
@@ -102,18 +111,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {function()} callback Callback to run.
      * @return {!Debouncer} Returns a debouncer object.
      */
+
+
     static debounce(debouncer, asyncModule, callback) {
       if (debouncer instanceof Debouncer) {
         debouncer.cancel();
       } else {
         debouncer = new Debouncer();
       }
+
       debouncer.setConfig(asyncModule, callback);
       return debouncer;
     }
-  }
 
+  }
   /** @const */
+
+
   Polymer.Debouncer = Debouncer;
-})();
-</script>
+})();</script>

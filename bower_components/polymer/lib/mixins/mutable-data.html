@@ -6,34 +6,32 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+--><link rel="import" href="../utils/mixin.html">
 
-<link rel="import" href="../utils/mixin.html">
+<script>(function () {
+  'use strict'; // Common implementation for mixin & behavior
 
-<script>
-(function() {
-  'use strict';
-
-  // Common implementation for mixin & behavior
   function mutablePropertyChange(inst, property, value, old, mutableData) {
     let isObject;
+
     if (mutableData) {
-      isObject = (typeof value === 'object' && value !== null);
-      // Pull `old` for Objects from temp cache, but treat `null` as a primitive
+      isObject = typeof value === 'object' && value !== null; // Pull `old` for Objects from temp cache, but treat `null` as a primitive
+
       if (isObject) {
         old = inst.__dataTemp[property];
       }
-    }
-    // Strict equality check, but return false for NaN===NaN
-    let shouldChange = (old !== value && (old === old || value === value));
-    // Objects are stored in temporary cache (cleared at end of
+    } // Strict equality check, but return false for NaN===NaN
+
+
+    let shouldChange = old !== value && (old === old || value === value); // Objects are stored in temporary cache (cleared at end of
     // turn), which is used for dirty-checking
+
     if (isObject && shouldChange) {
       inst.__dataTemp[property] = value;
     }
+
     return shouldChange;
   }
-
   /**
    * Element class mixin to skip strict dirty-checking for objects and arrays
    * (always consider them to be "dirty"), for use on elements utilizing
@@ -74,8 +72,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @summary Element class mixin to skip strict dirty-checking for objects
    *   and arrays
    */
-  Polymer.MutableData = Polymer.dedupingMixin(superClass => {
 
+
+  Polymer.MutableData = Polymer.dedupingMixin(superClass => {
     /**
      * @polymer
      * @mixinClass
@@ -106,10 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     return MutableData;
-
   });
-
-
   /**
    * Element class mixin to add the optional ability to skip strict
    * dirty-checking for objects and arrays (always consider them to be
@@ -151,15 +147,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @summary Element class mixin to optionally skip strict dirty-checking
    *   for objects and arrays
    */
-  Polymer.OptionalMutableData = Polymer.dedupingMixin(superClass => {
 
+  Polymer.OptionalMutableData = Polymer.dedupingMixin(superClass => {
     /**
      * @mixinClass
      * @polymer
      * @implements {Polymer_OptionalMutableData}
      */
     class OptionalMutableData extends superClass {
-
       static get properties() {
         return {
           /**
@@ -170,7 +165,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           mutableData: Boolean
         };
       }
-
       /**
        * Overrides `Polymer.PropertyEffects` to provide option for skipping
        * strict equality checking for Objects and Arrays.
@@ -189,17 +183,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        * @return {boolean} Whether the property should be considered a change
        * @protected
        */
+
+
       _shouldPropertyChange(property, value, old) {
         return mutablePropertyChange(this, property, value, old, this.mutableData);
       }
+
     }
 
     return OptionalMutableData;
+  }); // Export for use by legacy behavior
 
-  });
-
-  // Export for use by legacy behavior
   Polymer.MutableData._mutablePropertyChange = mutablePropertyChange;
-
-})();
-</script>
+})();</script>

@@ -6,10 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="resolve-url.html">
-<script>
-(function() {
+--><link rel="import" href="resolve-url.html">
+<script>(function () {
   'use strict';
 
   const MODULE_STYLE_LINK_SELECTOR = 'link[rel=import][type~=css]';
@@ -17,10 +15,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   const SHADY_UNSCOPED_ATTR = 'shady-unscoped';
 
   function importModule(moduleId) {
-    const /** Polymer.DomModule */ PolymerDomModule = customElements.get('dom-module');
+    const
+    /** Polymer.DomModule */
+    PolymerDomModule = customElements.get('dom-module');
+
     if (!PolymerDomModule) {
       return null;
     }
+
     return PolymerDomModule.import(moduleId);
   }
 
@@ -29,14 +31,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // under the HTMLImports polyfill, there will be no 'body',
     // but the import pseudo-doc can be used directly.
     let container = importDoc.body ? importDoc.body : importDoc;
-    const importCss = Polymer.ResolveUrl.resolveCss(container.textContent,
-      importDoc.baseURI);
+    const importCss = Polymer.ResolveUrl.resolveCss(container.textContent, importDoc.baseURI);
     const style = document.createElement('style');
     style.textContent = importCss;
     return style;
   }
-
   /** @typedef {{assetpath: string}} */
+
+
   let templateWithAssetPath; // eslint-disable-line no-unused-vars
 
   /**
@@ -47,8 +49,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @memberof Polymer
    * @summary Module with utilities for collection CSS text from various sources.
    */
-  const StyleGather = {
 
+  const StyleGather = {
     /**
      * Returns a list of <style> elements in a space-separated list of `dom-module`s.
      *
@@ -58,12 +60,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @return {!Array<!HTMLStyleElement>} Array of contained <style> elements
      * @this {StyleGather}
      */
-     stylesFromModules(moduleIds) {
+    stylesFromModules(moduleIds) {
       const modules = moduleIds.trim().split(/\s+/);
       const styles = [];
-      for (let i=0; i < modules.length; i++) {
+
+      for (let i = 0; i < modules.length; i++) {
         styles.push(...this.stylesFromModule(modules[i]));
       }
+
       return styles;
     },
 
@@ -87,14 +91,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       if (m._styles === undefined) {
-        const styles = [];
-        // module imports: <link rel="import" type="css">
-        styles.push(...this._stylesFromModuleImports(m));
-        // include css from the first template in the module
+        const styles = []; // module imports: <link rel="import" type="css">
+
+        styles.push(...this._stylesFromModuleImports(m)); // include css from the first template in the module
+
         const template = m.querySelector('template');
+
         if (template) {
           styles.push(...this.stylesFromTemplate(template,
-            /** @type {templateWithAssetPath} */(m).assetpath));
+          /** @type {templateWithAssetPath} */
+          m.assetpath));
         }
 
         m._styles = styles;
@@ -114,26 +120,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      */
     stylesFromTemplate(template, baseURI) {
       if (!template._styles) {
-        const styles = [];
-        // if element is a template, get content from its .content
+        const styles = []; // if element is a template, get content from its .content
+
         const e$ = template.content.querySelectorAll('style');
-        for (let i=0; i < e$.length; i++) {
-          let e = e$[i];
-          // support style sharing by allowing styles to "include"
+
+        for (let i = 0; i < e$.length; i++) {
+          let e = e$[i]; // support style sharing by allowing styles to "include"
           // other dom-modules that contain styling
+
           let include = e.getAttribute(INCLUDE_ATTR);
+
           if (include) {
-            styles.push(...this.stylesFromModules(include).filter(function(item, index, self) {
+            styles.push(...this.stylesFromModules(include).filter(function (item, index, self) {
               return self.indexOf(item) === index;
             }));
           }
+
           if (baseURI) {
             e.textContent = Polymer.ResolveUrl.resolveCss(e.textContent, baseURI);
           }
+
           styles.push(e);
         }
+
         template._styles = styles;
       }
+
       return template._styles;
     },
 
@@ -145,7 +157,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @return {!Array<!HTMLStyleElement>} Array of contained styles.
      * @this {StyleGather}
      */
-     stylesFromModuleImports(moduleId) {
+    stylesFromModuleImports(moduleId) {
       let m = importModule(moduleId);
       return m ? this._stylesFromModuleImports(m) : [];
     },
@@ -159,11 +171,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _stylesFromModuleImports(module) {
       const styles = [];
       const p$ = module.querySelectorAll(MODULE_STYLE_LINK_SELECTOR);
-      for (let i=0; i < p$.length; i++) {
+
+      for (let i = 0; i < p$.length; i++) {
         let p = p$[i];
+
         if (p.import) {
           const importDoc = p.import;
           const unscoped = p.hasAttribute(SHADY_UNSCOPED_ATTR);
+
           if (unscoped && !importDoc._unscopedStyle) {
             const style = styleForImport(importDoc);
             style.setAttribute(SHADY_UNSCOPED_ATTR, '');
@@ -171,9 +186,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           } else if (!importDoc._style) {
             importDoc._style = styleForImport(importDoc);
           }
+
           styles.push(unscoped ? importDoc._unscopedStyle : importDoc._style);
         }
       }
+
       return styles;
     },
 
@@ -189,12 +206,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @return {string} Concatenated CSS content from specified `dom-module`s
      * @this {StyleGather}
      */
-     cssFromModules(moduleIds) {
+    cssFromModules(moduleIds) {
       let modules = moduleIds.trim().split(/\s+/);
       let cssText = '';
-      for (let i=0; i < modules.length; i++) {
+
+      for (let i = 0; i < modules.length; i++) {
         cssText += this.cssFromModule(modules[i]);
       }
+
       return cssText;
     },
 
@@ -215,20 +234,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      */
     cssFromModule(moduleId) {
       let m = importModule(moduleId);
+
       if (m && m._cssText === undefined) {
         // module imports: <link rel="import" type="css">
-        let cssText = this._cssFromModuleImports(m);
-        // include css from the first template in the module
+        let cssText = this._cssFromModuleImports(m); // include css from the first template in the module
+
+
         let t = m.querySelector('template');
+
         if (t) {
           cssText += this.cssFromTemplate(t,
-            /** @type {templateWithAssetPath} */(m).assetpath);
+          /** @type {templateWithAssetPath} */
+          m.assetpath);
         }
+
         m._cssText = cssText || null;
       }
+
       if (!m) {
         console.warn('Could not find style data in module named', moduleId);
       }
+
       return m && m._cssText || '';
     },
 
@@ -247,15 +273,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      */
     cssFromTemplate(template, baseURI) {
       let cssText = '';
-      const e$ = this.stylesFromTemplate(template, baseURI);
-      // if element is a template, get content from its .content
-      for (let i=0; i < e$.length; i++) {
+      const e$ = this.stylesFromTemplate(template, baseURI); // if element is a template, get content from its .content
+
+      for (let i = 0; i < e$.length; i++) {
         let e = e$[i];
+
         if (e.parentNode) {
           e.parentNode.removeChild(e);
         }
+
         cssText += e.textContent;
       }
+
       return cssText;
     },
 
@@ -284,16 +313,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {!HTMLElement} module dom-module element that could contain `<link rel="import" type="css">` styles
      * @return {string} Concatenated CSS content from links in the dom-module
      */
-     _cssFromModuleImports(module) {
+    _cssFromModuleImports(module) {
       let cssText = '';
+
       let styles = this._stylesFromModuleImports(module);
-      for (let i=0; i < styles.length; i++) {
+
+      for (let i = 0; i < styles.length; i++) {
         cssText += styles[i].textContent;
       }
+
       return cssText;
     }
-  };
 
+  };
   Polymer.StyleGather = StyleGather;
-})();
-</script>
+})();</script>

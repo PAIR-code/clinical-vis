@@ -6,9 +6,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../polymer/polymer.html">
+--><link rel="import" href="../polymer/polymer.html">
 
 <!--
 The `<iron-flex-layout>` component provides simple ways to use
@@ -58,17 +56,15 @@ A complete [guide](https://elements.polymer-project.org/guides/flex-layout) to `
 @pseudoElement iron-flex-layout
 @demo demo/index.html
 -->
-<script>
-  // This is left only for backward compatibility with projects
-  // that incorrectly relied on unscoped global [hidden] rules;
-  // removing would be a breaking change, but new projects
-  // should never rely on this.
-  (function() {
-    var style = document.createElement('style');
-    style.textContent = '[hidden] { display: none !important; }';
-    document.head.appendChild(style);
-  })();
-</script>
+<script>// This is left only for backward compatibility with projects
+// that incorrectly relied on unscoped global [hidden] rules;
+// removing would be a breaking change, but new projects
+// should never rely on this.
+(function () {
+  var style = document.createElement('style');
+  style.textContent = '[hidden] { display: none !important; }';
+  document.head.appendChild(style);
+})();</script>
 <custom-style>
   <style is="custom-style">
     [hidden] {

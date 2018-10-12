@@ -6,14 +6,10 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+--><link rel="import" href="boot.html">
 
-<link rel="import" href="boot.html">
-
-<script>
-(function() {
+<script>(function () {
   'use strict';
-
   /**
    * Module with utilities for manipulating structured data path strings.
    *
@@ -21,8 +17,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @memberof Polymer
    * @summary Module with utilities for manipulating structured data path strings.
    */
-  const Path = {
 
+  const Path = {
     /**
      * Returns true if the given string is a structured data path (has dots).
      *
@@ -37,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {string} path Path string
      * @return {boolean} True if the string contained one or more dots
      */
-    isPath: function(path) {
+    isPath: function (path) {
       return path.indexOf('.') >= 0;
     },
 
@@ -55,11 +51,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {string} path Path string
      * @return {string} Root property name
      */
-    root: function(path) {
+    root: function (path) {
       let dotIndex = path.indexOf('.');
+
       if (dotIndex === -1) {
         return path;
       }
+
       return path.slice(0, dotIndex);
     },
 
@@ -80,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {string} path Path string to test.
      * @return {boolean} True if `path` is an ancestor of `base`.
      */
-    isAncestor: function(base, path) {
+    isAncestor: function (base, path) {
       //     base.startsWith(path + '.');
       return base.indexOf(path + '.') === 0;
     },
@@ -101,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {string} path Path string to test.
      * @return {boolean} True if `path` is a descendant of `base`.
      */
-    isDescendant: function(base, path) {
+    isDescendant: function (base, path) {
       //     path.startsWith(base + '.');
       return path.indexOf(base + '.') === 0;
     },
@@ -124,7 +122,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {string} path Path to translate
      * @return {string} Translated string
      */
-    translate: function(base, newBase, path) {
+    translate: function (base, newBase, path) {
       return newBase + path.slice(base.length);
     },
 
@@ -134,10 +132,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @return {boolean} True if `path` is equal to `base`
      * @this {Path}
      */
-    matches: function(base, path) {
-      return (base === path) ||
-             this.isAncestor(base, path) ||
-             this.isDescendant(base, path);
+    matches: function (base, path) {
+      return base === path || this.isAncestor(base, path) || this.isDescendant(base, path);
     },
 
     /**
@@ -155,15 +151,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {string | !Array<string|number>} path Input path
      * @return {string} Flattened path
      */
-    normalize: function(path) {
+    normalize: function (path) {
       if (Array.isArray(path)) {
         let parts = [];
-        for (let i=0; i<path.length; i++) {
+
+        for (let i = 0; i < path.length; i++) {
           let args = path[i].toString().split('.');
-          for (let j=0; j<args.length; j++) {
+
+          for (let j = 0; j < args.length; j++) {
             parts.push(args[j]);
           }
         }
+
         return parts.join('.');
       } else {
         return path;
@@ -187,10 +186,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @this {Path}
      * @suppress {checkTypes}
      */
-    split: function(path) {
+    split: function (path) {
       if (Array.isArray(path)) {
         return this.normalize(path).split('.');
       }
+
       return path.toString().split('.');
     },
 
@@ -207,20 +207,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      *  fully dereferenced.
      * @this {Path}
      */
-    get: function(root, path, info) {
+    get: function (root, path, info) {
       let prop = root;
-      let parts = this.split(path);
-      // Loop over path parts[0..n-1] and dereference
-      for (let i=0; i<parts.length; i++) {
+      let parts = this.split(path); // Loop over path parts[0..n-1] and dereference
+
+      for (let i = 0; i < parts.length; i++) {
         if (!prop) {
           return;
         }
+
         let part = parts[i];
         prop = prop[part];
       }
+
       if (info) {
         info.path = parts.join('.');
       }
+
       return prop;
     },
 
@@ -235,30 +238,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @return {string | undefined} The normalized version of the input path
      * @this {Path}
      */
-    set: function(root, path, value) {
+    set: function (root, path, value) {
       let prop = root;
       let parts = this.split(path);
-      let last = parts[parts.length-1];
+      let last = parts[parts.length - 1];
+
       if (parts.length > 1) {
         // Loop over path parts[0..n-2] and dereference
-        for (let i=0; i<parts.length-1; i++) {
+        for (let i = 0; i < parts.length - 1; i++) {
           let part = parts[i];
           prop = prop[part];
+
           if (!prop) {
             return;
           }
-        }
-        // Set value to object at end of path
+        } // Set value to object at end of path
+
+
         prop[last] = value;
       } else {
         // Simple property set
         prop[path] = value;
       }
+
       return parts.join('.');
     }
-
   };
-
   /**
    * Returns true if the given string is a structured data path (has dots).
    *
@@ -276,9 +281,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @param {string} path Path string
    * @return {boolean} True if the string contained one or more dots
    */
+
   Path.isDeep = Path.isPath;
-
   Polymer.Path = Path;
-
-})();
-</script>
+})();</script>

@@ -6,12 +6,9 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="boot.html">
+--><link rel="import" href="boot.html">
 
-<script>
-(function() {
-
+<script>(function () {
   'use strict';
 
   let scheduled = false;
@@ -19,13 +16,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   let afterRenderQueue = [];
 
   function schedule() {
-    scheduled = true;
-    // before next render
-    requestAnimationFrame(function() {
+    scheduled = true; // before next render
+
+    requestAnimationFrame(function () {
       scheduled = false;
-      flushQueue(beforeRenderQueue);
-      // after the render
-      setTimeout(function() {
+      flushQueue(beforeRenderQueue); // after the render
+
+      setTimeout(function () {
         runQueue(afterRenderQueue);
       });
     });
@@ -38,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
   function runQueue(queue) {
-    for (let i=0, l=queue.length; i < l; i++) {
+    for (let i = 0, l = queue.length; i < l; i++) {
       callMethod(queue.shift());
     }
   }
@@ -47,9 +44,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     const context = info[0];
     const callback = info[1];
     const args = info[2];
+
     try {
       callback.apply(context, args);
-    } catch(e) {
+    } catch (e) {
       setTimeout(() => {
         throw e;
       });
@@ -61,9 +59,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       flushQueue(beforeRenderQueue);
       flushQueue(afterRenderQueue);
     }
+
     scheduled = false;
   }
-
   /**
    * Module for scheduling flushable pre-render and post-render tasks.
    *
@@ -71,8 +69,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @memberof Polymer
    * @summary Module for scheduling flushable pre-render and post-render tasks.
    */
-  Polymer.RenderStatus = {
 
+
+  Polymer.RenderStatus = {
     /**
      * Enqueues a callback which will be run before the next render, at
      * `requestAnimationFrame` timing.
@@ -89,10 +88,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {!Array=} args An array of arguments to call the callback function with
      * @return {void}
      */
-    beforeNextRender: function(context, callback, args) {
+    beforeNextRender: function (context, callback, args) {
       if (!scheduled) {
         schedule();
       }
+
       beforeRenderQueue.push([context, callback, args]);
     },
 
@@ -111,10 +111,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @param {!Array=} args An array of arguments to call the callback function with
      * @return {void}
      */
-    afterNextRender: function(context, callback, args) {
+    afterNextRender: function (context, callback, args) {
       if (!scheduled) {
         schedule();
       }
+
       afterRenderQueue.push([context, callback, args]);
     },
 
@@ -126,8 +127,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @return {void}
      */
     flush: flush
-
   };
-
-})();
-</script>
+})();</script>

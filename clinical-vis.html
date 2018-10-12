@@ -10,8 +10,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
--->
-<link rel="import" href="../polymer/polymer.html">
+--><link rel="import" href="./bower_components/polymer/polymer.html">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
 <dom-module id="clinical-vis">
   <template>
@@ -341,7 +340,7 @@ limitations under the License.
                 <div class="lab-key">[[item]]</div>
                 <div class="lab-value">[[getLabValue(item, labsTimestamp)]]</div>
                 <div class="lab-units">[[getKeyUnits(item)]]</div>
-                <div class="lab-sparkline" id$=[[getLabId(item)]]></div>
+                <div class="lab-sparkline" id$="[[getLabId(item)]]"></div>
               </div>
             </template>
           </div>
@@ -353,541 +352,785 @@ limitations under the License.
       </div>
     </div>
   </template>
-  <script>
-    const unitData = {
-      'Albumin': {'units': 'g/dL', 'low': 3.5, 'high': 6},
-      'Anion Gap': {'units': 'mEq/L'},
-      'Bicarbonate': {'units': 'mEq/L', 'low': 22, 'high': 32},
-      'Bilirubin': {'units': 'mg/dL', 'low': 0.1, 'high': 1.2},
-      'Blood urea nitrogen': {'units': 'mEq/L', 'low': 6, 'high': 20},
-      'Calcium': {'units': 'mg/dL', 'low': 8.4, 'high': 10.3},
-      'Chloride': {'units': 'mEq/L', 'low': 96, 'high': 108},
-      'Cholesterol': {'units': 'mg/dL', 'low': 40, 'high': 240},
-      'Creatinine': {'units': 'mEq/L', 'low': 0.4, 'high': 1.1},
-      'Diastolic blood pressure': {'units': 'mmHg', 'low': 60, 'high': 90},
-      'Fraction inspired oxygen': {'units': '%'},
-      'Glucose': {'units': 'mg/dL', 'low': 70, 'high': 105},
-      'Heart Rate': {'units': 'bpm', 'low': 50, 'high': 100},
-      'Hematocrit': {'units': '%', 'low': 37, 'high': 52},
-      'Hemoglobin': {'units': 'g/dL', 'low': 11.2, 'high': 15.7},
-      'Lactate': {'units': 'mmol/dL', 'low': .5, 'high': 2},
-      'Lymphocytes': {'units': 'm/uL', 'low': 1, 'high': 3},
-      'Magnesium': {'units': 'mg/dL', 'low': 1.6, 'high': 2.6},
-      'Mean blood pressure': {'units': 'mmHg'},
-      'Monocytes': {'units': 'M/uL', 'low': .2, 'high': 1},
-      'Neutrophilis': {'units': 'M/uL', 'low': 2, 'high': 7},
-      'Oxygen saturation': {'units': '%', 'low': 94, 'high': 100},
-      'Partial pressure of CO2': {'units': 'mmHg', 'low': 38, 'high': 42},
-      'Partial pressure of O2': {'units': 'mmHg', 'low': 75, 'high': 100},
-      'pH': {'low': 7.35, 'high': 7.45},
-      'Phosphate': {'units': 'mg/dL', 'low': 2.7, 'high': 4.5},
-      'Platelets': {'units': 'K/uL', 'low': 150, 'high': 400},
-      'Potassium': {'units': 'mEq/L', 'low': 3.3, 'high': 5.1},
-      'Prothrombin time': {'units': 'secL', 'low': 11, 'high': 14},
-      'Partial thromboplastin time': {'units': 'sec', 'low': 25, 'high': 35},
-      'Red blood cell count': {'units': 'M/uL', 'low': 42, 'high': 6.1},
-      'Respiratory rate': {'units': 'bpm', 'low': 12, 'high': 25},
-      'Sodium': {'units': 'mEq/L', 'low': 133, 'high': 145},
-      'Systolic blood pressure': {'units': 'mmHg', 'low': 95, 'high': 140},
-      'Temperature': {'units': 'C', 'low': 36.6, 'high': 37},
-      'Troponin-I': {'units': 'ng/mL'},
-      'Troponin-T': {'units': 'ng/mL', 'low': 0, 'high': 0.01},
-      'Urine output': {},
-      'Weight': {'units': 'kg', 'low': 40, 'high': 240},
-      'White blood cell count': {'units': 'K/uL', 'low': 5, 'high': 10},
+  <script>const unitData = {
+  'Albumin': {
+    'units': 'g/dL',
+    'low': 3.5,
+    'high': 6
+  },
+  'Anion Gap': {
+    'units': 'mEq/L'
+  },
+  'Bicarbonate': {
+    'units': 'mEq/L',
+    'low': 22,
+    'high': 32
+  },
+  'Bilirubin': {
+    'units': 'mg/dL',
+    'low': 0.1,
+    'high': 1.2
+  },
+  'Blood urea nitrogen': {
+    'units': 'mEq/L',
+    'low': 6,
+    'high': 20
+  },
+  'Calcium': {
+    'units': 'mg/dL',
+    'low': 8.4,
+    'high': 10.3
+  },
+  'Chloride': {
+    'units': 'mEq/L',
+    'low': 96,
+    'high': 108
+  },
+  'Cholesterol': {
+    'units': 'mg/dL',
+    'low': 40,
+    'high': 240
+  },
+  'Creatinine': {
+    'units': 'mEq/L',
+    'low': 0.4,
+    'high': 1.1
+  },
+  'Diastolic blood pressure': {
+    'units': 'mmHg',
+    'low': 60,
+    'high': 90
+  },
+  'Fraction inspired oxygen': {
+    'units': '%'
+  },
+  'Glucose': {
+    'units': 'mg/dL',
+    'low': 70,
+    'high': 105
+  },
+  'Heart Rate': {
+    'units': 'bpm',
+    'low': 50,
+    'high': 100
+  },
+  'Hematocrit': {
+    'units': '%',
+    'low': 37,
+    'high': 52
+  },
+  'Hemoglobin': {
+    'units': 'g/dL',
+    'low': 11.2,
+    'high': 15.7
+  },
+  'Lactate': {
+    'units': 'mmol/dL',
+    'low': .5,
+    'high': 2
+  },
+  'Lymphocytes': {
+    'units': 'm/uL',
+    'low': 1,
+    'high': 3
+  },
+  'Magnesium': {
+    'units': 'mg/dL',
+    'low': 1.6,
+    'high': 2.6
+  },
+  'Mean blood pressure': {
+    'units': 'mmHg'
+  },
+  'Monocytes': {
+    'units': 'M/uL',
+    'low': .2,
+    'high': 1
+  },
+  'Neutrophilis': {
+    'units': 'M/uL',
+    'low': 2,
+    'high': 7
+  },
+  'Oxygen saturation': {
+    'units': '%',
+    'low': 94,
+    'high': 100
+  },
+  'Partial pressure of CO2': {
+    'units': 'mmHg',
+    'low': 38,
+    'high': 42
+  },
+  'Partial pressure of O2': {
+    'units': 'mmHg',
+    'low': 75,
+    'high': 100
+  },
+  'pH': {
+    'low': 7.35,
+    'high': 7.45
+  },
+  'Phosphate': {
+    'units': 'mg/dL',
+    'low': 2.7,
+    'high': 4.5
+  },
+  'Platelets': {
+    'units': 'K/uL',
+    'low': 150,
+    'high': 400
+  },
+  'Potassium': {
+    'units': 'mEq/L',
+    'low': 3.3,
+    'high': 5.1
+  },
+  'Prothrombin time': {
+    'units': 'secL',
+    'low': 11,
+    'high': 14
+  },
+  'Partial thromboplastin time': {
+    'units': 'sec',
+    'low': 25,
+    'high': 35
+  },
+  'Red blood cell count': {
+    'units': 'M/uL',
+    'low': 42,
+    'high': 6.1
+  },
+  'Respiratory rate': {
+    'units': 'bpm',
+    'low': 12,
+    'high': 25
+  },
+  'Sodium': {
+    'units': 'mEq/L',
+    'low': 133,
+    'high': 145
+  },
+  'Systolic blood pressure': {
+    'units': 'mmHg',
+    'low': 95,
+    'high': 140
+  },
+  'Temperature': {
+    'units': 'C',
+    'low': 36.6,
+    'high': 37
+  },
+  'Troponin-I': {
+    'units': 'ng/mL'
+  },
+  'Troponin-T': {
+    'units': 'ng/mL',
+    'low': 0,
+    'high': 0.01
+  },
+  'Urine output': {},
+  'Weight': {
+    'units': 'kg',
+    'low': 40,
+    'high': 240
+  },
+  'White blood cell count': {
+    'units': 'K/uL',
+    'low': 5,
+    'high': 10
+  }
+};
+Polymer({
+  is: "clinical-vis",
+  properties: {
+    json: {
+      tye: String,
+      observer: 'jsonChanged'
+    },
+    noteTime: String,
+    noteText: String,
+    age: Number,
+    selectedNoteIndex: Number,
+    notesChart: Object
+  },
+  getFakeName: function (gender) {
+    return gender == 'M' ? 'John Doe' : 'Jane Doe';
+  },
+  getIcuName: function (icu) {
+    if (icu == 'TSICU') {
+      return 'Trauma ICU';
+    }
+
+    if (icu == 'CSRU') {
+      return 'Cardiac Surgical Recovery Unit';
+    }
+
+    return icu;
+  },
+  getItemText: function (event) {
+    const isNum = !isNaN(event.value) && event.value != '';
+
+    if (isNum) {
+      let num = parseFloat(event.value);
+      return +num.toFixed(3);
+    }
+
+    return event.value;
+  },
+  getLabValue: function (key, timestamp) {
+    for (const lab of this.labResultsByTimestamp[timestamp]) {
+      if (lab.key == key) {
+        return +parseFloat(lab.value).toFixed(3);
+      }
+    }
+
+    return '-';
+  },
+  getKeyUnits: function (key) {
+    return unitData[key] && unitData[key].units ? unitData[key].units : null;
+  },
+  getLabId: function (key) {
+    requestAnimationFrame(() => this.drawSparkline(key));
+    return key.replace(/\s/g, '');
+  },
+  drawSparkline: function (key) {
+    const times = [];
+    const data = [];
+    let selectedIndex = -1;
+
+    for (let time of Object.keys(this.labResultsByTimestamp).sort()) {
+      for (const lab of this.labResultsByTimestamp[time]) {
+        if (lab.key == key && lab.value != null) {
+          data.push(lab.value);
+          times.push(time * 1000);
+
+          if (time == this.labsTimestamp) {
+            selectedIndex = data.length - 1;
+          }
+
+          break;
+        }
+      }
+    }
+
+    const printableKey = key.length < 10 ? key : key.substring(0, 8) + '...';
+    const isFirstLabInList = this.labsList.indexOf(key) == 0;
+    const tooltipTop = isFirstLabInList ? 30 : -60;
+    const chartRange = this.getKeyRange(key);
+    const gridData = {
+      y: {
+        show: false
+      }
     };
-    Polymer({
-      is: "clinical-vis",
-      properties: {
-        json: {tye: String, observer: 'jsonChanged'},
-        noteTime: String,
-        noteText: String,
-        age: Number,
-        selectedNoteIndex: Number,
-        notesChart: Object,
-      },
-      getFakeName: function(gender) {
-        return gender == 'M' ? 'John Doe' : 'Jane Doe';
-      },
-      getIcuName: function(icu) {
-        if (icu == 'TSICU') {
-          return 'Trauma ICU';
-        }
-        if (icu == 'CSRU') {
-          return 'Cardiac Surgical Recovery Unit';
-        }
-        return icu;
-      },
-      getItemText: function(event) {
-        const isNum = !isNaN(event.value) && event.value != '';
-        if (isNum) {
-          let num = parseFloat(event.value)
-          return +num.toFixed(3);
-        }
-        return event.value;
-      },
-      getLabValue: function(key, timestamp) {
-        for (const lab of this.labResultsByTimestamp[timestamp]) {
-          if (lab.key == key) {
-            return +(parseFloat(lab.value).toFixed(3));
-          }
-        }
-        return '-';
-      },
-      getKeyUnits: function(key) {
-        return unitData[key] && unitData[key].units ? unitData[key].units : null;
-      },
-      getLabId: function(key) {
-        requestAnimationFrame(() => this.drawSparkline(key));
-        return key.replace(/\s/g,'');
-      },
-      drawSparkline: function(key) {
-        const times = [];
-        const data = [];
-        let selectedIndex = -1;
-        for (let time of Object.keys(this.labResultsByTimestamp).sort()) {
-          for (const lab of this.labResultsByTimestamp[time]) {
-            if (lab.key == key && lab.value != null) {
-              data.push(lab.value);
-              times.push(time * 1000);
-              if (time == this.labsTimestamp) {
-                selectedIndex = data.length - 1;
-              }
-              break;
-            }
-          }
-        }
-        const printableKey = key.length < 10 ? key : key.substring(0, 8) + '...';
-        const isFirstLabInList = this.labsList.indexOf(key) == 0;
-        const tooltipTop = isFirstLabInList ? 30 : -60;
-        const chartRange = this.getKeyRange(key);
-        const gridData = {y: {show: false}};
-          if (chartRange != null) {
-            gridData.y['lines'] = [
-              {value: +chartRange[0], class: 'lab-limit-line'},
-              {value: +chartRange[1], class: 'lab-limit-line'},
-            ];
-          }
-        const chart = c3.generate({
-          bindto: '#' + key.replace(/\s/g,''),
-          data: {
-            x: 'time',
-            columns: [
-              ['time'].concat(times),
-              [printableKey].concat(data)
-            ],
-            color: function (color, d) {
-              return d.index == selectedIndex ? "#007696" : "#95c1c9";
-            }
-          },
-          legend: {
-            show: false
-          },
-          tooltip:{
-            show: true,
-            position: function (data, width, height, element) {
-              return {top: tooltipTop, left: 0};
-            },
-          },
-          axis: {
-            x: {show: false, type: 'timeseries', localtime: false, min: this.minX * 1000, max: this.maxX * 1000},
-            y: {show: false}
-          },
-          size: {
-            height: 40,
-            width: 120
-          },
-          point: {
-            show: true
-          },
-          grid: gridData,
-        });
-      },
-      getKeyRange: function(key) {
-        return unitData[key] && unitData[key].low ? [unitData[key].low, unitData[key].high] : null;
-      },
-      jsonChanged: function(json) {
-        this.$.chartstop.innerHTML = '';
-        const dob = new Date(json.dob)
-        const firstEntryDate = new Date(+json.events[0].timestamp * 1000);
-        const diff = firstEntryDate.getTime() - dob.getTime();
-        this.age = Math.floor(diff / (1000*60*60*24*365.25));
-        json.events.forEach((item) => {
-          if (!item['category']) {
-            item['category'] = 'Other';
-          }
-        });
-        timestamps = json.events.map(event => event['timestamp']).sort();
-        timestamps = timestamps.filter((item, pos) => pos == 0 || item != timestamps[pos - 1]);
-        categories = json.events.map(event => event['category']).sort();
-        categories = categories.filter((item, pos) => pos == 0 || item != categories[pos - 1]);
-        eventsByCat = {}
-        categories.forEach((cat) => eventsByCat[cat] = {});
-        for (var cat in eventsByCat) {
-          if (cat == 'Other') {
-            continue;
-          }
-          keys = json.events.filter((item) => item['category'] == cat).map((item) => item['key']).sort();
-          keys = keys.filter((item, pos) => pos == 0 || item != keys[pos - 1]);
-          for (key of keys) {
-            const timeToEvents = {}
-            events = json.events.filter((item) => item['category'] == cat).filter((item) => item['key'] == key);
-            for (event of events) {
-              timeToEvents[event['timestamp']] = event;
-            }
-            eventsByCat[cat][key] = timeToEvents;
-          }
-        }
-        this.generateCharts(eventsByCat, json.notes.sort((a, b) => a.timestamp - b.timestamp));
-      },
-      generateCharts: function(eventsByCat, notes) {
-        const allEvents = []
-        minX = Number.MAX_VALUE;
-        maxX = 0;
-        const vitalsOrdering = {
-          'Temperature': 0,
-          'Heart Rate': 1,
-          'Systolic blood pressure': 2,
-          'Diastolic blood pressure': 3,
-          'Mean blood pressure': 4,
-          'Respiratory rate': 5,
-          'Oxygen saturation': 6,
-          'Urine output': 7,
-          'Weight': 8,
-          'Glascow coma scale': 9,
-        };
-        const labOrdering = {
-          'Sodium': 0,
-          'Potassium': 1,
-          'Chloride': 2,
-          'Bicarbonate': 3,
-          'Blood urea nitrogen': 4,
-          'Creatinine': 5,
-          'Glucose': 6,
-        };
-        for (cat in eventsByCat) {
-          let keys = Object.keys(eventsByCat[cat]);
-          if (cat == 'Vitals') {
-            keys = keys.sort((a, b) => {
-              if (a in vitalsOrdering && b in vitalsOrdering) {
-                return vitalsOrdering[a] - vitalsOrdering[b];
-              }
-              if (a in vitalsOrdering) {
-                return -1;
-              }
-              if (b in vitalsOrdering) {
-                return 1;
-              }
-              else {
-                return a - b;
-              }});
-          }
-          for (key of keys) {
-            if (cat == 'Vitals') {
-              allEvents.push({key: key, category: cat, events: eventsByCat[cat][key]});
-            }
-            const times = Object.keys(eventsByCat[cat][key]).map((time) => eventsByCat[cat][key][time].timestamp)
-            minX = Math.min(minX, ...times);
-            maxX = Math.max(maxX, ...times);
-          }
-        }
-        for (note of notes) {
-          minX = Math.min(minX, +note.timestamp);
-          maxX = Math.max(maxX, +note.timestamp);
-        }
-        // Pad one extra hour to ensure enough space for edge data points and their labels.
-        minX -= 60 * 60;
-        maxX += 60 * 60;
-        this.minX = minX;
-        this.maxX = maxX;
-        this.labResultsByTimestamp = {}
-        const labKeys = [];
-        for (key in eventsByCat['Labs']) {
-          labKeys.push(key);
-          for (timestamp in eventsByCat['Labs'][key]) {
-            lab_bar_timestamp = timestamp - (timestamp % (60 * 60));
-            if (!(lab_bar_timestamp in this.labResultsByTimestamp)) {
-              this.labResultsByTimestamp[lab_bar_timestamp] = [];
-            }
-            this.labResultsByTimestamp[lab_bar_timestamp].push({
-              key: key,
-              value: 'value_num' in eventsByCat['Labs'][key][timestamp] ?
-                  eventsByCat['Labs'][key][timestamp].value_num :
-                  eventsByCat['Labs'][key][timestamp].value_str});
-          }
-        }
-        this.labsList = labKeys;
-        const holder = d3.select(this.$.chartstop)
-        let currentCat = '';
-        let currentCatSelection = null;
-        const xAxisWidth = holder.node().getBoundingClientRect().width - 190 - 40;
-        const xAxisHeight = 20;
-        const xAxisVis = holder.append("svg:svg")
-                               .attr('class', 'xaxis-holder')
-                               .attr("width", xAxisWidth)
-                               .attr("height", xAxisHeight)
-                               .attr('overflow', 'visible');
-        const offsetToUTC = new Date(minX * 1000).getTimezoneOffset() * 60;
-        const xScale = d3.time.scale()
-                          .domain([new Date((minX + offsetToUTC) * 1000), new Date((maxX + offsetToUTC) * 1000)])
-                          .rangeRound([0, xAxisWidth]);
-        const xAxis = d3.svg.axis()
-                            .orient('top')
-                            .scale(xScale);
-        xAxisVis.append("g")
-                .attr("class", "xaxis")
-                .attr("transform", "translate(0," + xAxisHeight + ")")
-                .call(xAxis.tickFormat(d3.timeFormat("%I %p")).tickSize(-10));
-        const notesClickListener = (e) => {
-          this.noteTime = new Date(e.x).toLocaleString('en-US', {timeZone: 'UTC'});
-          const timestamp = new Date(e.x).getTime() / 1000;
-          let noteIndex = 0;
-          for (var i = 0; i < this.json.notes.length; i++) {
-            if (this.json.notes[i].timestamp == timestamp) {
-              noteIndex = i;
-              break;
-            }
-          }
-          this.noteText = this.json.notes[noteIndex].note;
-          this.selectedNoteIndex = e.index;
-          this.notesChart.flush();
-        };
-        const notesBarLabeler = (v, id, i, j) => {
-          if (!v) {
-            return null;
-          }
-          const frac = v - Math.floor(v);
-          let index = 0;
-          if (frac > 0) {
-            if (frac < 0.09) {
-              index = +(frac.toFixed(3).substring(3));
-            }
-            else {
-              index = +(frac.toFixed(1).substring(2));
-            }
-          }
-          return notes[index].category;
-        }
-        const notesColorSelector = (color, d) => typeof d ==='object' &&  'index' in d && d.index == this.selectedNoteIndex ? '#448e3d' : '#F2946B';
-        const notesChartAssigner = chart => this.notesChart = chart;
-        const allNoteTimes = notes.map(note => note.timestamp).sort();
-        let selectedNoteTime = allNoteTimes.length > 0 ? allNoteTimes[allNoteTimes.length - 1] : 0;
-        // Find the latest nursing note if one exists.
-        const allNursingNotes = notes.filter(note => note.category.indexOf('ursing') != -1);
-        if (allNursingNotes.length > 0) {
-          selectedNoteTime = allNursingNotes[allNursingNotes.length - 1].timestamp;
-        }
-        this.generateBarChart(allNoteTimes, notesClickListener, 'Notes', notesBarLabeler,
-                              notesColorSelector, notesChartAssigner, minX, maxX, selectedNoteTime);
-        const labsClickListener = (e) => {
-          this.labsTime = new Date(e.x).toLocaleString('en-US', {timeZone: 'UTC'});
-          this.labsTimestamp = new Date(e.x).getTime() / 1000;
-          const selectedLabs = this.labResultsByTimestamp[this.labsTimestamp].map(item => item.key);
-          const resortedLabList = this.labsList.sort((a, b) => {
-            const aInSelected = selectedLabs.indexOf(a) != -1;
-            const bInSelected = selectedLabs.indexOf(b) != -1;
-            if (aInSelected && !bInSelected) {
-              return -1;
-            }
-            if (bInSelected && !aInSelected) {
-              return 1;
-            }
-            if (a in labOrdering && b in labOrdering) {
-              return labOrdering[a] - labOrdering[b];
-            }
-            if (a in labOrdering) {
-              return -1;
-            }
-            if (b in labOrdering) {
-              return 1;
-            }
-            else {
-              return a - b;
-            }});
-          // Reset labsList to rerender sparklines.
-          this.labsList = [];
-          requestAnimationFrame(() => this.labsList = resortedLabList);
-          this.selectedLabsIndex = e.index;
-          this.labsChart.flush();
-        };
-        const labResultsList = Object.keys(this.labResultsByTimestamp).sort();
-        const labsBarLabeler = (v, id, i, j) => {
-          if (!v) {
-            return null;
-          }
-          const frac = v - Math.floor(v);
-          let index = 0;
-          if (frac > 0) {
-            if (frac < 0.09) {
-              index = +(frac.toFixed(3).substring(3));
-            }
-            else {
-              index = +(frac.toFixed(1).substring(2));
-            }
-          }
-          const numLabs = this.labResultsByTimestamp[labResultsList[index]] ? this.labResultsByTimestamp[labResultsList[index]].length : 0;
-          return numLabs != 1 ?  numLabs + ' labs' :
-              this.labResultsByTimestamp[labResultsList[index]][0].key.length < 10 ?
-                  this.labResultsByTimestamp[labResultsList[index]][0].key :
-                  this.labResultsByTimestamp[labResultsList[index]][0].key.substring(0, 8) + '...';
-        }
-        const labsColorSelector = (color, d) => typeof d ==='object' && 'index' in d && d.index == this.selectedLabsIndex ? '#1ca4bc' : '#F2946B';
-        const labsChartAssigner = chart => this.labsChart = chart;
-        let selectedLabsTime = labResultsList.length > 0 ? labResultsList[labResultsList.length - 1] : 0;
-        // Find the latest labs time with more than one lab, to pre-select.
-        for (let i = labResultsList.length - 1; i >= 0; i--) {
-          if (this.labResultsByTimestamp[labResultsList[i]] && this.labResultsByTimestamp[labResultsList[i]].length > 1) {
-            selectedLabsTime = labResultsList[i];
-            break;
-          }
-        }
-        this.generateBarChart(labResultsList, labsClickListener, 'Labs', labsBarLabeler,
-                              labsColorSelector, labsChartAssigner, minX, maxX, selectedLabsTime);
-        for (idx in allEvents) {
-          const event = allEvents[idx];
-          if (event.category != currentCat) {
-            currentCat = event.category;
-            currentCatSelection = holder.append('div').classed('cat-holder', true);
-            const vitalsHeadingHolder = currentCatSelection.append('div');
-            vitalsHeadingHolder.classed('vitals-top-holder', true);
-            vitalsHeadingHolder.append('div').classed('cat-holder-inner', true).html(currentCat);
-            const xAxisVis = vitalsHeadingHolder.append("svg:svg")
-                               .attr('class', 'vitals-axis-holder')
-                               .attr("width", xAxisWidth)
-                               .attr("height", xAxisHeight)
-                               .attr('overflow', 'auto');
-            xAxisVis.append("g")
-                    .attr("class", "xaxis")
-                    .attr("transform", "translate(0," + xAxisHeight + ")")
-                    .call(xAxis.tickFormat(d3.timeFormat("%I %p")).tickSize(-10));
-          }
-          const keyAndChartDiv = currentCatSelection.append('div').classed(
-            'key-and-chart-holder', true);
-          const chartUnits = this.getKeyUnits(event.key);
-          const chartRange = this.getKeyRange(event.key);
-          const chartTitleDiv = keyAndChartDiv.append('div');
-          chartTitleDiv.classed('key-holder', true).html(event.key);
-          if (chartUnits != null) {
-            chartTitleDiv.append('span').classed('chart-units', true).classed('lab-units', true).html('(' + chartUnits + ')');
-          }
-          const chartDiv = keyAndChartDiv.append('div')
-                                          .classed('chart-holder', true)
-                                          .append('div')
-                                          .classed('chart-holder-inner', true);
-          let x = Object.keys(event.events).filter(time => event.events[time].value_num != null);
-          let y = x.map(time => event.events[time].value_num);
-          if (!y.some((el) => el != null)) {
-            continue;
-          }
-          const key = event.key;
-          y = [event.key].concat(y);
-          x = x.map((x) => x * 1000);
-          x = ['time'].concat(x);
-          const gridData = {y: {show: true}};
-          if (chartRange != null) {
-            gridData.y['lines'] = [
-              {value: +chartRange[0], class: 'limit-line'},
-              {value: +chartRange[1], class: 'limit-line'},
-            ];
-          }
-          const colorSelector = (color, d) => '#db5825';
-          const chart = c3.generate({
-            bindto: chartDiv,
-            data: {
-              x: 'time',
-              xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
-              columns: [x, y],
-              labels: {
-                format: (v, id, i, j) => +(+v).toFixed(2) + '',
-              },
-              color: colorSelector,
-            },
-            size: {
-              height: 60,
-            },
-            axis: {
-              x: {show: false, type: 'timeseries', localtime: false, min: minX * 1000, max: maxX * 1000},
-              y: {show: true, tick: { count: 3, format: d3.format('.1f')}, padding: {top: 20, bottom: 6} }
-            },
-            legend: {
-              show: false
-            },
-            grid: gridData,
-          });
+
+    if (chartRange != null) {
+      gridData.y['lines'] = [{
+        value: +chartRange[0],
+        class: 'lab-limit-line'
+      }, {
+        value: +chartRange[1],
+        class: 'lab-limit-line'
+      }];
+    }
+
+    const chart = c3.generate({
+      bindto: '#' + key.replace(/\s/g, ''),
+      data: {
+        x: 'time',
+        columns: [['time'].concat(times), [printableKey].concat(data)],
+        color: function (color, d) {
+          return d.index == selectedIndex ? "#007696" : "#95c1c9";
         }
       },
-      generateBarChart(timeList, clickListener, label, barLabeler, colorSelector, assigner, minX,
-                        maxX, timeOfPreselectedNote) {
-        const holder = d3.select(this.$.chartstop).append('div').classed('cat-holder', true);
-        const keyAndChartDiv = holder.append('div').classed(
-          'key-and-chart-holder', true);
-        keyAndChartDiv.append('div').classed('bar-key-holder', true).html(label);
-        const barDiv = keyAndChartDiv.append('div').classed('chart-holder', true).append('div')
-            .classed('chart-holder-inner-bar', true).classed('chart-holder-inner', true);
-        const allTimes = {};
-        timeList.sort();
-        timeList.forEach((time, i) => {
-          allTimes[time] = i;
-        });
-        // Add blank entries for times along the time axis to ensure true bars are placed correctly.
-        let curTime = minX;
-        const newTimes = []
-        while (curTime < maxX) {
-          if (timeList.indexOf(curTime) == -1) {
-            newTimes.push(curTime);
-            curTime += 60 * 60;
-          }
+      legend: {
+        show: false
+      },
+      tooltip: {
+        show: true,
+        position: function (data, width, height, element) {
+          return {
+            top: tooltipTop,
+            left: 0
+          };
         }
-        let times = Object.keys(allTimes).concat(newTimes).sort();
-        const selectedItem = {x: new Date(timeOfPreselectedNote * 1000),
-                              index: times.indexOf(timeOfPreselectedNote)};
-        let y = times.map((time, i) => {
-          if (allTimes[time] == null) {
-            return 0;
-          }
-          if (timeList.indexOf(time) < 10) {
-            return 10 + (+('.' + timeList.indexOf(time).toString()));
-          } else {
-            return 10 + (+('.0' + timeList.indexOf(time).toString()));
-          }
-          return allTimes[time] == null ? 0 : 10 + (+('.' + timeList.indexOf(time).toString()));
-        });
-        y = ['notes'].concat(y);
-        times = times.map((x) => x * 1000);
-        times = ['time'].concat(times);
-        const chart = c3.generate({
-          bindto: barDiv,
-          data: {
-            x: 'time',
-            xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
-            columns: [times, y],
-            labels: {
-              format: (v, id, i, j) => barLabeler(v, id, i, j)
-            },
-            color: colorSelector,
-            type: 'bar',
-            onclick: clickListener,
-          },
-          size: {
-            height: 70,
-          },
-          axis: {
-            x: {show:false, type: 'timeseries', localtime: false, min: minX * 1000, max: maxX * 1000},
-            y: {show:false}
-          },
-          legend: {
-            show: false
-          },
-          tooltip: {
-            show: false
-          },
-          bar: {
-            width: 20
-          },
-        });
-        assigner(chart);
-        clickListener(selectedItem);
+      },
+      axis: {
+        x: {
+          show: false,
+          type: 'timeseries',
+          localtime: false,
+          min: this.minX * 1000,
+          max: this.maxX * 1000
+        },
+        y: {
+          show: false
+        }
+      },
+      size: {
+        height: 40,
+        width: 120
+      },
+      point: {
+        show: true
+      },
+      grid: gridData
+    });
+  },
+  getKeyRange: function (key) {
+    return unitData[key] && unitData[key].low ? [unitData[key].low, unitData[key].high] : null;
+  },
+  jsonChanged: function (json) {
+    this.$.chartstop.innerHTML = '';
+    const dob = new Date(json.dob);
+    const firstEntryDate = new Date(+json.events[0].timestamp * 1000);
+    const diff = firstEntryDate.getTime() - dob.getTime();
+    this.age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    json.events.forEach(item => {
+      if (!item['category']) {
+        item['category'] = 'Other';
       }
     });
-  </script>
+    timestamps = json.events.map(event => event['timestamp']).sort();
+    timestamps = timestamps.filter((item, pos) => pos == 0 || item != timestamps[pos - 1]);
+    categories = json.events.map(event => event['category']).sort();
+    categories = categories.filter((item, pos) => pos == 0 || item != categories[pos - 1]);
+    eventsByCat = {};
+    categories.forEach(cat => eventsByCat[cat] = {});
+
+    for (var cat in eventsByCat) {
+      if (cat == 'Other') {
+        continue;
+      }
+
+      keys = json.events.filter(item => item['category'] == cat).map(item => item['key']).sort();
+      keys = keys.filter((item, pos) => pos == 0 || item != keys[pos - 1]);
+
+      for (key of keys) {
+        const timeToEvents = {};
+        events = json.events.filter(item => item['category'] == cat).filter(item => item['key'] == key);
+
+        for (event of events) {
+          timeToEvents[event['timestamp']] = event;
+        }
+
+        eventsByCat[cat][key] = timeToEvents;
+      }
+    }
+
+    this.generateCharts(eventsByCat, json.notes.sort((a, b) => a.timestamp - b.timestamp));
+  },
+  generateCharts: function (eventsByCat, notes) {
+    const allEvents = [];
+    minX = Number.MAX_VALUE;
+    maxX = 0;
+    const vitalsOrdering = {
+      'Temperature': 0,
+      'Heart Rate': 1,
+      'Systolic blood pressure': 2,
+      'Diastolic blood pressure': 3,
+      'Mean blood pressure': 4,
+      'Respiratory rate': 5,
+      'Oxygen saturation': 6,
+      'Urine output': 7,
+      'Weight': 8,
+      'Glascow coma scale': 9
+    };
+    const labOrdering = {
+      'Sodium': 0,
+      'Potassium': 1,
+      'Chloride': 2,
+      'Bicarbonate': 3,
+      'Blood urea nitrogen': 4,
+      'Creatinine': 5,
+      'Glucose': 6
+    };
+
+    for (cat in eventsByCat) {
+      let keys = Object.keys(eventsByCat[cat]);
+
+      if (cat == 'Vitals') {
+        keys = keys.sort((a, b) => {
+          if (a in vitalsOrdering && b in vitalsOrdering) {
+            return vitalsOrdering[a] - vitalsOrdering[b];
+          }
+
+          if (a in vitalsOrdering) {
+            return -1;
+          }
+
+          if (b in vitalsOrdering) {
+            return 1;
+          } else {
+            return a - b;
+          }
+        });
+      }
+
+      for (key of keys) {
+        if (cat == 'Vitals') {
+          allEvents.push({
+            key: key,
+            category: cat,
+            events: eventsByCat[cat][key]
+          });
+        }
+
+        const times = Object.keys(eventsByCat[cat][key]).map(time => eventsByCat[cat][key][time].timestamp);
+        minX = Math.min(minX, ...times);
+        maxX = Math.max(maxX, ...times);
+      }
+    }
+
+    for (note of notes) {
+      minX = Math.min(minX, +note.timestamp);
+      maxX = Math.max(maxX, +note.timestamp);
+    } // Pad one extra hour to ensure enough space for edge data points and their labels.
+
+
+    minX -= 60 * 60;
+    maxX += 60 * 60;
+    this.minX = minX;
+    this.maxX = maxX;
+    this.labResultsByTimestamp = {};
+    const labKeys = [];
+
+    for (key in eventsByCat['Labs']) {
+      labKeys.push(key);
+
+      for (timestamp in eventsByCat['Labs'][key]) {
+        lab_bar_timestamp = timestamp - timestamp % (60 * 60);
+
+        if (!(lab_bar_timestamp in this.labResultsByTimestamp)) {
+          this.labResultsByTimestamp[lab_bar_timestamp] = [];
+        }
+
+        this.labResultsByTimestamp[lab_bar_timestamp].push({
+          key: key,
+          value: 'value_num' in eventsByCat['Labs'][key][timestamp] ? eventsByCat['Labs'][key][timestamp].value_num : eventsByCat['Labs'][key][timestamp].value_str
+        });
+      }
+    }
+
+    this.labsList = labKeys;
+    const holder = d3.select(this.$.chartstop);
+    let currentCat = '';
+    let currentCatSelection = null;
+    const xAxisWidth = holder.node().getBoundingClientRect().width - 190 - 40;
+    const xAxisHeight = 20;
+    const xAxisVis = holder.append("svg:svg").attr('class', 'xaxis-holder').attr("width", xAxisWidth).attr("height", xAxisHeight).attr('overflow', 'visible');
+    const offsetToUTC = new Date(minX * 1000).getTimezoneOffset() * 60;
+    const xScale = d3.time.scale().domain([new Date((minX + offsetToUTC) * 1000), new Date((maxX + offsetToUTC) * 1000)]).rangeRound([0, xAxisWidth]);
+    const xAxis = d3.svg.axis().orient('top').scale(xScale);
+    xAxisVis.append("g").attr("class", "xaxis").attr("transform", "translate(0," + xAxisHeight + ")").call(xAxis.tickFormat(d3.timeFormat("%I %p")).tickSize(-10));
+
+    const notesClickListener = e => {
+      this.noteTime = new Date(e.x).toLocaleString('en-US', {
+        timeZone: 'UTC'
+      });
+      const timestamp = new Date(e.x).getTime() / 1000;
+      let noteIndex = 0;
+
+      for (var i = 0; i < this.json.notes.length; i++) {
+        if (this.json.notes[i].timestamp == timestamp) {
+          noteIndex = i;
+          break;
+        }
+      }
+
+      this.noteText = this.json.notes[noteIndex].note;
+      this.selectedNoteIndex = e.index;
+      this.notesChart.flush();
+    };
+
+    const notesBarLabeler = (v, id, i, j) => {
+      if (!v) {
+        return null;
+      }
+
+      const frac = v - Math.floor(v);
+      let index = 0;
+
+      if (frac > 0) {
+        if (frac < 0.09) {
+          index = +frac.toFixed(3).substring(3);
+        } else {
+          index = +frac.toFixed(1).substring(2);
+        }
+      }
+
+      return notes[index].category;
+    };
+
+    const notesColorSelector = (color, d) => typeof d === 'object' && 'index' in d && d.index == this.selectedNoteIndex ? '#448e3d' : '#F2946B';
+
+    const notesChartAssigner = chart => this.notesChart = chart;
+
+    const allNoteTimes = notes.map(note => note.timestamp).sort();
+    let selectedNoteTime = allNoteTimes.length > 0 ? allNoteTimes[allNoteTimes.length - 1] : 0; // Find the latest nursing note if one exists.
+
+    const allNursingNotes = notes.filter(note => note.category.indexOf('ursing') != -1);
+
+    if (allNursingNotes.length > 0) {
+      selectedNoteTime = allNursingNotes[allNursingNotes.length - 1].timestamp;
+    }
+
+    this.generateBarChart(allNoteTimes, notesClickListener, 'Notes', notesBarLabeler, notesColorSelector, notesChartAssigner, minX, maxX, selectedNoteTime);
+
+    const labsClickListener = e => {
+      this.labsTime = new Date(e.x).toLocaleString('en-US', {
+        timeZone: 'UTC'
+      });
+      this.labsTimestamp = new Date(e.x).getTime() / 1000;
+      const selectedLabs = this.labResultsByTimestamp[this.labsTimestamp].map(item => item.key);
+      const resortedLabList = this.labsList.sort((a, b) => {
+        const aInSelected = selectedLabs.indexOf(a) != -1;
+        const bInSelected = selectedLabs.indexOf(b) != -1;
+
+        if (aInSelected && !bInSelected) {
+          return -1;
+        }
+
+        if (bInSelected && !aInSelected) {
+          return 1;
+        }
+
+        if (a in labOrdering && b in labOrdering) {
+          return labOrdering[a] - labOrdering[b];
+        }
+
+        if (a in labOrdering) {
+          return -1;
+        }
+
+        if (b in labOrdering) {
+          return 1;
+        } else {
+          return a - b;
+        }
+      }); // Reset labsList to rerender sparklines.
+
+      this.labsList = [];
+      requestAnimationFrame(() => this.labsList = resortedLabList);
+      this.selectedLabsIndex = e.index;
+      this.labsChart.flush();
+    };
+
+    const labResultsList = Object.keys(this.labResultsByTimestamp).sort();
+
+    const labsBarLabeler = (v, id, i, j) => {
+      if (!v) {
+        return null;
+      }
+
+      const frac = v - Math.floor(v);
+      let index = 0;
+
+      if (frac > 0) {
+        if (frac < 0.09) {
+          index = +frac.toFixed(3).substring(3);
+        } else {
+          index = +frac.toFixed(1).substring(2);
+        }
+      }
+
+      const numLabs = this.labResultsByTimestamp[labResultsList[index]] ? this.labResultsByTimestamp[labResultsList[index]].length : 0;
+      return numLabs != 1 ? numLabs + ' labs' : this.labResultsByTimestamp[labResultsList[index]][0].key.length < 10 ? this.labResultsByTimestamp[labResultsList[index]][0].key : this.labResultsByTimestamp[labResultsList[index]][0].key.substring(0, 8) + '...';
+    };
+
+    const labsColorSelector = (color, d) => typeof d === 'object' && 'index' in d && d.index == this.selectedLabsIndex ? '#1ca4bc' : '#F2946B';
+
+    const labsChartAssigner = chart => this.labsChart = chart;
+
+    let selectedLabsTime = labResultsList.length > 0 ? labResultsList[labResultsList.length - 1] : 0; // Find the latest labs time with more than one lab, to pre-select.
+
+    for (let i = labResultsList.length - 1; i >= 0; i--) {
+      if (this.labResultsByTimestamp[labResultsList[i]] && this.labResultsByTimestamp[labResultsList[i]].length > 1) {
+        selectedLabsTime = labResultsList[i];
+        break;
+      }
+    }
+
+    this.generateBarChart(labResultsList, labsClickListener, 'Labs', labsBarLabeler, labsColorSelector, labsChartAssigner, minX, maxX, selectedLabsTime);
+
+    for (idx in allEvents) {
+      const event = allEvents[idx];
+
+      if (event.category != currentCat) {
+        currentCat = event.category;
+        currentCatSelection = holder.append('div').classed('cat-holder', true);
+        const vitalsHeadingHolder = currentCatSelection.append('div');
+        vitalsHeadingHolder.classed('vitals-top-holder', true);
+        vitalsHeadingHolder.append('div').classed('cat-holder-inner', true).html(currentCat);
+        const xAxisVis = vitalsHeadingHolder.append("svg:svg").attr('class', 'vitals-axis-holder').attr("width", xAxisWidth).attr("height", xAxisHeight).attr('overflow', 'auto');
+        xAxisVis.append("g").attr("class", "xaxis").attr("transform", "translate(0," + xAxisHeight + ")").call(xAxis.tickFormat(d3.timeFormat("%I %p")).tickSize(-10));
+      }
+
+      const keyAndChartDiv = currentCatSelection.append('div').classed('key-and-chart-holder', true);
+      const chartUnits = this.getKeyUnits(event.key);
+      const chartRange = this.getKeyRange(event.key);
+      const chartTitleDiv = keyAndChartDiv.append('div');
+      chartTitleDiv.classed('key-holder', true).html(event.key);
+
+      if (chartUnits != null) {
+        chartTitleDiv.append('span').classed('chart-units', true).classed('lab-units', true).html('(' + chartUnits + ')');
+      }
+
+      const chartDiv = keyAndChartDiv.append('div').classed('chart-holder', true).append('div').classed('chart-holder-inner', true);
+      let x = Object.keys(event.events).filter(time => event.events[time].value_num != null);
+      let y = x.map(time => event.events[time].value_num);
+
+      if (!y.some(el => el != null)) {
+        continue;
+      }
+
+      const key = event.key;
+      y = [event.key].concat(y);
+      x = x.map(x => x * 1000);
+      x = ['time'].concat(x);
+      const gridData = {
+        y: {
+          show: true
+        }
+      };
+
+      if (chartRange != null) {
+        gridData.y['lines'] = [{
+          value: +chartRange[0],
+          class: 'limit-line'
+        }, {
+          value: +chartRange[1],
+          class: 'limit-line'
+        }];
+      }
+
+      const colorSelector = (color, d) => '#db5825';
+
+      const chart = c3.generate({
+        bindto: chartDiv,
+        data: {
+          x: 'time',
+          xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
+          columns: [x, y],
+          labels: {
+            format: (v, id, i, j) => +(+v).toFixed(2) + ''
+          },
+          color: colorSelector
+        },
+        size: {
+          height: 60
+        },
+        axis: {
+          x: {
+            show: false,
+            type: 'timeseries',
+            localtime: false,
+            min: minX * 1000,
+            max: maxX * 1000
+          },
+          y: {
+            show: true,
+            tick: {
+              count: 3,
+              format: d3.format('.1f')
+            },
+            padding: {
+              top: 20,
+              bottom: 6
+            }
+          }
+        },
+        legend: {
+          show: false
+        },
+        grid: gridData
+      });
+    }
+  },
+
+  generateBarChart(timeList, clickListener, label, barLabeler, colorSelector, assigner, minX, maxX, timeOfPreselectedNote) {
+    const holder = d3.select(this.$.chartstop).append('div').classed('cat-holder', true);
+    const keyAndChartDiv = holder.append('div').classed('key-and-chart-holder', true);
+    keyAndChartDiv.append('div').classed('bar-key-holder', true).html(label);
+    const barDiv = keyAndChartDiv.append('div').classed('chart-holder', true).append('div').classed('chart-holder-inner-bar', true).classed('chart-holder-inner', true);
+    const allTimes = {};
+    timeList.sort();
+    timeList.forEach((time, i) => {
+      allTimes[time] = i;
+    }); // Add blank entries for times along the time axis to ensure true bars are placed correctly.
+
+    let curTime = minX;
+    const newTimes = [];
+
+    while (curTime < maxX) {
+      if (timeList.indexOf(curTime) == -1) {
+        newTimes.push(curTime);
+        curTime += 60 * 60;
+      }
+    }
+
+    let times = Object.keys(allTimes).concat(newTimes).sort();
+    const selectedItem = {
+      x: new Date(timeOfPreselectedNote * 1000),
+      index: times.indexOf(timeOfPreselectedNote)
+    };
+    let y = times.map((time, i) => {
+      if (allTimes[time] == null) {
+        return 0;
+      }
+
+      if (timeList.indexOf(time) < 10) {
+        return 10 + +('.' + timeList.indexOf(time).toString());
+      } else {
+        return 10 + +('.0' + timeList.indexOf(time).toString());
+      }
+
+      return allTimes[time] == null ? 0 : 10 + +('.' + timeList.indexOf(time).toString());
+    });
+    y = ['notes'].concat(y);
+    times = times.map(x => x * 1000);
+    times = ['time'].concat(times);
+    const chart = c3.generate({
+      bindto: barDiv,
+      data: {
+        x: 'time',
+        xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
+        columns: [times, y],
+        labels: {
+          format: (v, id, i, j) => barLabeler(v, id, i, j)
+        },
+        color: colorSelector,
+        type: 'bar',
+        onclick: clickListener
+      },
+      size: {
+        height: 70
+      },
+      axis: {
+        x: {
+          show: false,
+          type: 'timeseries',
+          localtime: false,
+          min: minX * 1000,
+          max: maxX * 1000
+        },
+        y: {
+          show: false
+        }
+      },
+      legend: {
+        show: false
+      },
+      tooltip: {
+        show: false
+      },
+      bar: {
+        width: 20
+      }
+    });
+    assigner(chart);
+    clickListener(selectedItem);
+  }
+
+});</script>
 </dom-module>

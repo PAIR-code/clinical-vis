@@ -6,14 +6,11 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="lib/mixins/element-mixin.html">
+--><link rel="import" href="lib/mixins/element-mixin.html">
 <!-- import html-tag to export html -->
 <link rel="import" href="lib/utils/html-tag.html">
-<script>
-(function() {
+<script>(function () {
   'use strict';
-
   /**
    * Base class that provides the core API for Polymer's meta-programming
    * features including template stamping, data-binding, attribute deserialization,
@@ -29,9 +26,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    *   key meta-programming features including template stamping, data-binding,
    *   attribute deserialization, and property change observation
    */
-  Polymer.Element = Polymer.ElementMixin(HTMLElement);
 
-  // NOTE: this is here for modulizer to export `html` for the module version of this file
+  Polymer.Element = Polymer.ElementMixin(HTMLElement); // NOTE: this is here for modulizer to export `html` for the module version of this file
+
   Polymer.html = Polymer.html;
-})();
-</script>
+})();</script>

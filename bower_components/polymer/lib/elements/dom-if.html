@@ -6,18 +6,13 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../../polymer-element.html">
+--><link rel="import" href="../../polymer-element.html">
 <link rel="import" href="../utils/templatize.html">
 <link rel="import" href="../utils/debounce.html">
 <link rel="import" href="../utils/flush.html">
 
-<script>
-
-(function() {
+<script>(function () {
   'use strict';
-
   /**
    * The `<dom-if>` element will stamp a light-dom `<template>` child when
    * the `if` property becomes truthy, and the template can use Polymer
@@ -40,18 +35,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * @summary Custom element that conditionally stamps and hides or removes
    *   template content based on a boolean flag.
    */
-  class DomIf extends Polymer.Element {
 
+  class DomIf extends Polymer.Element {
     // Not needed to find template; can be removed once the analyzer
     // can find the tag name from customElements.define call
-    static get is() { return 'dom-if'; }
+    static get is() {
+      return 'dom-if';
+    }
 
-    static get template() { return null; }
+    static get template() {
+      return null;
+    }
 
     static get properties() {
-
       return {
-
         /**
          * Fired whenever DOM is added or removed/hidden by this template (by
          * default, rendering occurs lazily).  To force immediate rendering, call
@@ -79,9 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Boolean,
           observer: '__debounceRender'
         }
-
       };
-
     }
 
     constructor() {
@@ -110,36 +105,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //    we wanted a sync option in the future, simply having <dom-if> flush
       //    (or clear) its template's pending host properties before creating
       //    the instance would also avoid the problem.
-      this.__renderDebouncer = Polymer.Debouncer.debounce(
-            this.__renderDebouncer
-          , Polymer.Async.microTask
-          , () => this.__render());
+      this.__renderDebouncer = Polymer.Debouncer.debounce(this.__renderDebouncer, Polymer.Async.microTask, () => this.__render());
       Polymer.enqueueDebouncer(this.__renderDebouncer);
     }
-
     /**
      * @return {void}
      */
+
+
     disconnectedCallback() {
       super.disconnectedCallback();
-      if (!this.parentNode ||
-          (this.parentNode.nodeType == Node.DOCUMENT_FRAGMENT_NODE &&
-           !this.parentNode.host)) {
+
+      if (!this.parentNode || this.parentNode.nodeType == Node.DOCUMENT_FRAGMENT_NODE && !this.parentNode.host) {
         this.__teardownInstance();
       }
     }
-
     /**
      * @return {void}
      */
+
+
     connectedCallback() {
       super.connectedCallback();
       this.style.display = 'none';
+
       if (this.if) {
         this.__debounceRender();
       }
     }
-
     /**
      * Forces the element to render its content. Normally rendering is
      * asynchronous to a provoking change. This is done for efficiency so
@@ -148,6 +141,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * validate application state.
      * @return {void}
      */
+
+
     render() {
       Polymer.flush();
     }
@@ -158,13 +153,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // No template found yet
           return;
         }
+
         this._showHideChildren();
       } else if (this.restamp) {
         this.__teardownInstance();
       }
+
       if (!this.restamp && this.__instance) {
         this._showHideChildren();
       }
+
       if (this.if != this._lastIf) {
         this.dispatchEvent(new CustomEvent('dom-change', {
           bubbles: true,
@@ -175,34 +173,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     __ensureInstance() {
-      let parentNode = this.parentNode;
-      // Guard against element being detached while render was queued
+      let parentNode = this.parentNode; // Guard against element being detached while render was queued
+
       if (parentNode) {
         if (!this.__ctor) {
-          let template = /** @type {HTMLTemplateElement} */(this.querySelector('template'));
+          let template =
+          /** @type {HTMLTemplateElement} */
+          this.querySelector('template');
+
           if (!template) {
             // Wait until childList changes and template should be there by then
             let observer = new MutationObserver(() => {
               if (this.querySelector('template')) {
                 observer.disconnect();
+
                 this.__render();
               } else {
                 throw new Error('dom-if requires a <template> child');
               }
             });
-            observer.observe(this, {childList: true});
+            observer.observe(this, {
+              childList: true
+            });
             return false;
           }
+
           this.__ctor = Polymer.Templatize.templatize(template, this, {
             // dom-if templatizer instances require `mutable: true`, as
             // `__syncHostProperties` relies on that behavior to sync objects
             mutableData: true,
+
             /**
              * @param {string} prop Property to forward
              * @param {*} value Value of property
              * @this {this}
              */
-            forwardHostProp: function(prop, value) {
+            forwardHostProp: function (prop, value) {
               if (this.__instance) {
                 if (this.if) {
                   this.__instance.forwardHostProp(prop, value);
@@ -218,33 +224,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
           });
         }
+
         if (!this.__instance) {
           this.__instance = new this.__ctor();
           parentNode.insertBefore(this.__instance.root, this);
         } else {
           this.__syncHostProperties();
+
           let c$ = this.__instance.children;
+
           if (c$ && c$.length) {
             // Detect case where dom-if was re-attached in new position
             let lastChild = this.previousSibling;
-            if (lastChild !== c$[c$.length-1]) {
-              for (let i=0, n; (i<c$.length) && (n=c$[i]); i++) {
+
+            if (lastChild !== c$[c$.length - 1]) {
+              for (let i = 0, n; i < c$.length && (n = c$[i]); i++) {
                 parentNode.insertBefore(n, this);
               }
             }
           }
         }
       }
+
       return true;
     }
 
     __syncHostProperties() {
       let props = this.__invalidProps;
+
       if (props) {
         for (let prop in props) {
           this.__instance._setPendingProperty(prop, this.__dataHost[prop]);
         }
+
         this.__invalidProps = null;
+
         this.__instance._flushProperties();
       }
     }
@@ -252,18 +266,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     __teardownInstance() {
       if (this.__instance) {
         let c$ = this.__instance.children;
+
         if (c$ && c$.length) {
           // use first child parent, for case when dom-if may have been detached
           let parent = c$[0].parentNode;
-          for (let i=0, n; (i<c$.length) && (n=c$[i]); i++) {
+
+          for (let i = 0, n; i < c$.length && (n = c$[i]); i++) {
             parent.removeChild(n);
           }
         }
+
         this.__instance = null;
         this.__invalidProps = null;
       }
     }
-
     /**
      * Shows or hides the template instance top level child elements. For
      * text nodes, `textContent` is removed while "hidden" and replaced when
@@ -271,8 +287,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * @return {void}
      * @protected
      */
+
+
     _showHideChildren() {
       let hidden = this.__hideTemplateChildren__ || !this.if;
+
       if (this.__instance) {
         this.__instance._showHideChildren(hidden);
       }
@@ -281,9 +300,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
   customElements.define(DomIf.is, DomIf);
-
   /** @const */
-  Polymer.DomIf = DomIf;
 
-})();
-</script>
+  Polymer.DomIf = DomIf;
+})();</script>
