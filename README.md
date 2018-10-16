@@ -3,6 +3,9 @@
 ClinicalVis is a medical record visualization that attempts to improve upon the
 baseline table-based medical record visualizations.
 
+See the paper that describes and evaluates the visualization on
+[arxiv](https://arxiv.org/abs/1810.05798).
+
 This project contains two Polymer elements:
 * clinical-vis: The updated medical record visualization
 * clinical-table: A baseline table-based medical record visualization
